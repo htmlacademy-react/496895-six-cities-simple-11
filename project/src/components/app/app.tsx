@@ -1,7 +1,8 @@
 import MainScreen from '../../pages/main-screen/main-screen';
+import {Offer} from '../../types/types';
 
 type AppProps = {
-  cardsCount: number;
+  offers: Offer[];
 }
 
 function App(props: AppProps): JSX.Element {
@@ -34,7 +35,7 @@ function App(props: AppProps): JSX.Element {
         </div>
       </header>
 
-      <MainScreen cardsCount={props.cardsCount} />
+      <MainScreen offers={props.offers} />
     </>
 
   );

@@ -11,7 +11,7 @@ const offers: Offer[] = [
       alt: 'Place image'
     },
     price: 120,
-    rating: 80,
+    rating: 4.3,
     name: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
   },
@@ -24,7 +24,7 @@ const offers: Offer[] = [
       alt: 'Place image'
     },
     price: 80,
-    rating: 80,
+    rating: 3.8,
     name: 'Wood and stone place',
     type: 'Private room',
   },
@@ -37,7 +37,7 @@ const offers: Offer[] = [
       alt: 'Place image'
     },
     price: 132,
-    rating: 80,
+    rating: 4.1,
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
   },
@@ -51,7 +51,7 @@ const offers: Offer[] = [
       alt: 'Place image'
     },
     price: 180,
-    rating: 100,
+    rating: 4.6,
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
   },
@@ -64,7 +64,7 @@ const offers: Offer[] = [
       alt: 'Place image'
     },
     price: 80,
-    rating: 80,
+    rating: 3.7,
     name: 'Wood and stone place',
     type: 'Private room',
   }

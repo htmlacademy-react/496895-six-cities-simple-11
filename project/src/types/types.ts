@@ -1,13 +1,13 @@
 type Offer = {
-  id: number;
+  id: number | string;
   mark?: string;
   img: {
     src: string;
-    width: number;
-    height: number;
+    width: number | string;
+    height: number | string;
     alt: string;
   };
-  price: number;
+  price: number | string;
   rating: number;
   name: string;
   type: string;
