@@ -29,4 +29,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header
+export default Header;

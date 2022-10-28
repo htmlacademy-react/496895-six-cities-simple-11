@@ -1,19 +1,20 @@
 import {Offer} from '../../types/types';
 
 type OfferCardProps = {
-  offer: Offer
+  offer: Offer;
 }
 
 const RATING_STAR_COUNT = 5;
 const MAX_PERCENT = 100;
 
 function OfferCard({offer}: OfferCardProps): JSX.Element {
-  const ratingAsPercentage = (MAX_PERCENT / RATING_STAR_COUNT) *  Math.round(offer.rating);
+  const ratingAsPercentage = (MAX_PERCENT / RATING_STAR_COUNT) * Math.round(offer.rating);
 
   return (
     <article className="cities__card place-card">
-      {offer.mark && <div className="place-card__mark">
-         <span>{offer.mark}</span>
+      {offer.mark &&
+      <div className="place-card__mark">
+        <span>{offer.mark}</span>
       </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">

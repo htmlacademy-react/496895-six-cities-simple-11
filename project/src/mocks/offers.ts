@@ -70,4 +70,4 @@ const offers: Offer[] = [
   }
 ];
 
-export {offers}
+export {offers};
