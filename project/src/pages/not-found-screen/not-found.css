@@ -7,7 +7,8 @@
   margin-left: auto;
   padding-top: 62px;
   text-align: center;
-  background-image: url('../img/ico-no-results.svg');background-size: 45px 47px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='45' height='47' xmlns='http://www.w3.org/2000/svg'%3e%3cg stroke-width='5' fill='none' fill-rule='evenodd'%3e%3ccircle stroke='%234180C5' cx='18.5' cy='18.5' r='16'/%3e%3cpath d='M29.5 30.5l13 14' stroke='%234180C5' stroke-linecap='round'/%3e%3cpath d='M12.5 18.5h12' stroke='%23383838' stroke-linecap='square'/%3e%3c/g%3e%3c/svg%3e");
+  background-size: 45px 47px;
   background-position: center top;
   background-repeat: no-repeat;
 }

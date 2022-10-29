@@ -3,7 +3,7 @@ import './not-found.css'
 
 function NotFoundScreen(): JSX.Element {
   return (
-    <div className="page">
+    <div className="page page--gray">
       <Header />
       <main className="page__main page__main--property">
         <section className="not-found">
