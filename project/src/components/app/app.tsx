@@ -1,3 +1,4 @@
+import Layout from './../layout/layout';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
@@ -12,13 +13,16 @@ type AppProps = {
 }
 
 function App(props: AppProps): JSX.Element {
+  const isOffersEmpty = props.offers.length === 0;
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Root} element={<MainScreen offers={props.offers} />} />
-        <Route path={AppRoute.Login} element={props.isAuth ? <Navigate to={AppRoute.Root} /> : <LoginScreen />} />
-        <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen />} />
-        <Route path="*" element={<NotFoundScreen />} />
+        <Route path={AppRoute.Root} element={<Layout isAuth={props.isAuth} isOffersEmpty={isOffersEmpty} />}>
+          <Route index element={<MainScreen offers={props.offers} isOffersEmpty={isOffersEmpty} />} />
+          <Route path={AppRoute.Login} element={props.isAuth ? <Navigate to={AppRoute.Root} /> : <LoginScreen />} />
+          <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen offers={props.offers} />} />
+          <Route path="*" element={<NotFoundScreen />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
