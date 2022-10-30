@@ -40,7 +40,7 @@ function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
 
   return (
     <div className={pageElClassName}>
-      <Header />
+      <Header isAuth={isAuth} />
 
       <main className={mainElClassName}>
         <Outlet />
