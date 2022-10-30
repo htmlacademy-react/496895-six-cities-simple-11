@@ -1,14 +1,15 @@
-//import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Offer} from './../../types/types';
+import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
 type RoomScreenProps = {
   offers: Offer[];
 }
 
 function RoomScreen({offers}: RoomScreenProps): JSX.Element {
-  //const params = useParams();
-  //const offer = offers.find((offer) => offer.id === params.id);
-  return (
+  const params = useParams();
+  const offer = offers.find((offer) => offer.id === params.id);
+  return offer ? (
     <>
       <section className="property">
         <div className="property__gallery-container container">
@@ -386,7 +387,7 @@ function RoomScreen({offers}: RoomScreenProps): JSX.Element {
         </section>
       </div>
     </>
-  );
+  ) : (<NotFoundScreen />);
 }
 
 export default RoomScreen;
