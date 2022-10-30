@@ -1,5 +1,5 @@
 type HeaderNavProps = {
-  isAuth: boolean
+  isAuth: boolean;
 }
 
 function HeaderNav({isAuth}: HeaderNavProps): JSX.Element {

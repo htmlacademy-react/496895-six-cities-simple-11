@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import HeaderNav from '../header-nav/header-nav';
 
 type HeaderProps = {
-  isAuth: boolean
+  isAuth: boolean;
 }
 
 function Header({isAuth}: HeaderProps): JSX.Element {

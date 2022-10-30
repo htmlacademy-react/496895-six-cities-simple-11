@@ -3,7 +3,7 @@ import {Offer} from '../../types/types';
 
 type MainScreenProps = {
   offers: Offer[];
-  isOffersEmpty: boolean
+  isOffersEmpty: boolean;
 }
 
 function MainScreen({offers, isOffersEmpty}: MainScreenProps): JSX.Element {

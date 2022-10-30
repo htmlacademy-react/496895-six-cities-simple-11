@@ -8,7 +8,8 @@ type RoomScreenProps = {
 
 function RoomScreen({offers}: RoomScreenProps): JSX.Element {
   const params = useParams();
-  const offer = offers.find((offer) => offer.id === params.id);
+  const offer = offers.find((item) => item.id === params.id);
+
   return offer ? (
     <>
       <section className="property">
@@ -73,7 +74,7 @@ function RoomScreen({offers}: RoomScreenProps): JSX.Element {
                 <span style={{width: '80%'}} />
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="property__rating-value rating__value">4.8</span>
+              <span className="property__rating-value rating__value">{offer.rating}</span>
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
@@ -87,7 +88,7 @@ function RoomScreen({offers}: RoomScreenProps): JSX.Element {
               </li>
             </ul>
             <div className="property__price">
-              <b className="property__price-value">€120</b>
+              <b className="property__price-value">€{offer.price}</b>
               <span className="property__price-text">&nbsp;night</span>
             </div>
             <div className="property__inside">
