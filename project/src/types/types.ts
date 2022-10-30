@@ -1,5 +1,5 @@
 type Offer = {
-  id: number | string;
+  id: string;
   mark?: string;
   img: {
     src: string;

@@ -1,0 +1,41 @@
+.not-found__status-wrapper {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  margin-top: 25.4vh;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 62px;
+  text-align: center;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='45' height='47' xmlns='http://www.w3.org/2000/svg'%3e%3cg stroke-width='5' fill='none' fill-rule='evenodd'%3e%3ccircle stroke='%234180C5' cx='18.5' cy='18.5' r='16'/%3e%3cpath d='M29.5 30.5l13 14' stroke='%234180C5' stroke-linecap='round'/%3e%3cpath d='M12.5 18.5h12' stroke='%23383838' stroke-linecap='square'/%3e%3c/g%3e%3c/svg%3e");
+  background-size: 45px 47px;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.not-found__status {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 32px;
+  line-height: 1.1875;
+}
+
+.not-found__status-description {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0 45px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.not-found__button {
+  padding: 16px 20px 13px;
+    color: #fff;
+    background-color: #4481c3;
+    border-radius: 3px;
+}
+
+.not-found__button:focus,
+.not-found__button:hover {
+  background-color: #3069a6;
+}

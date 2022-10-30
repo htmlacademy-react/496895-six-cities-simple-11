@@ -6,9 +6,10 @@ import {offers} from './mocks/offers';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+const isAuth = true;
 
 root.render(
   <React.StrictMode>
-    <App offers={offers} />
+    <App isAuth={isAuth} offers={offers} />
   </React.StrictMode>,
 );
