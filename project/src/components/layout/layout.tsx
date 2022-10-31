@@ -7,36 +7,23 @@ type LayoutProps = {
   isAuth: boolean;
 }
 
-function getMainElClassName(isAuth: boolean) : string {
+function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassName | typeof MainElClassName) : string {
   const pathname = window.location.pathname;
 
   switch(pathname) {
     case AppRoute.Root:
-      return MainElClassName.Main;
+      return enumeration.Main;
     case AppRoute.Login:
-      return isAuth ? MainElClassName.Main : MainElClassName.Login;
+      return isAuth ? enumeration.Main : enumeration.Login;
     default:
-      return MainElClassName.Room;
-  }
-}
-
-function getPageElClassName(isAuth: boolean) : string {
-  const pathname = window.location.pathname;
-
-  switch(pathname) {
-    case AppRoute.Root:
-      return PageElClassName.Main;
-    case AppRoute.Login:
-      return isAuth ? PageElClassName.Main : PageElClassName.Login;
-    default:
-      return PageElClassName.Room;
+      return enumeration.Room;
   }
 }
 
 function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
-  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getMainElClassName(isAuth);
+  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName);
 
-  const pageElClassName = getPageElClassName(isAuth);
+  const pageElClassName = getElementClassName(isAuth, PageElClassName);
 
   return (
     <div className={pageElClassName}>
