@@ -1,15 +1,11 @@
 import {Offer} from '../../types/types';
+import Rating from '../rating/rating';
 
 type OfferCardProps = {
   offer: Offer;
 }
 
-const RATING_STAR_COUNT = 5;
-const MAX_PERCENT = 100;
-
 function OfferCard({offer}: OfferCardProps): JSX.Element {
-  const ratingAsPercentage = (MAX_PERCENT / RATING_STAR_COUNT) * Math.round(offer.rating);
-
   return (
     <article className="cities__card place-card">
       {offer.isPremium &&
@@ -27,14 +23,10 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
+        </div>
 
-        </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${ratingAsPercentage}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating className='place-card' number={offer.rating} />
+
         <h2 className="place-card__name">
           <a href="#">Beautiful &amp; luxurious apartment at great location</a>
         </h2>
