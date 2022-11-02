@@ -4,10 +4,11 @@ type RatingProps = {
   className: string;
   number: number;
   isShowNumer?: boolean;
+  isMathFloorNumber?: boolean;
 }
 
-function Rating({className, number, isShowNumer}: RatingProps): JSX.Element {
-  const ratingAsPercentage = (RatingSetting.MaxPercent / RatingSetting.StarCount) * Math.round(number);
+function Rating({className, number, isShowNumer, isMathFloorNumber}: RatingProps): JSX.Element {
+  const ratingAsPercentage = (RatingSetting.MaxPercent / RatingSetting.StarCount) * Math[isMathFloorNumber ? 'floor' : 'round'](number);
   return (
     <div className={`${className}__rating rating`}>
       <div className={`${className}__stars rating__stars`}>
