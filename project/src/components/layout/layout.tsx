@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom';
+import {Outlet, useLocation} from 'react-router-dom';
 import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 
@@ -8,7 +8,7 @@ type LayoutProps = {
 }
 
 function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassName | typeof MainElClassName) : string {
-  const pathname = window.location.pathname;
+  const pathname = useLocation().pathname;
 
   switch(pathname) {
     case AppRoute.Root:
