@@ -23,7 +23,7 @@ type Photos = {
 
 type Offer = {
   id: string;
-  mark?: string;
+  isPremium: boolean;
   img: {
     src: string;
     width: number | string;

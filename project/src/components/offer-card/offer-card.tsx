@@ -12,9 +12,9 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
 
   return (
     <article className="cities__card place-card">
-      {offer.mark &&
+      {offer.isPremium &&
       <div className="place-card__mark">
-        <span>{offer.mark}</span>
+        <span>Premium</span>
       </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">

@@ -45,7 +45,7 @@ const photos: Photos = [
 const offers: Offer[] = [
   {
     id: '1',
-    mark: 'Premium',
+    isPremium: true,
     img: {
       src: 'img/apartment-01.jpg',
       width: 260,
@@ -75,6 +75,7 @@ const offers: Offer[] = [
   },
   {
     id: '2',
+    isPremium: false,
     img: {
       src: 'img/room.jpg',
       width: 260,
@@ -104,6 +105,7 @@ const offers: Offer[] = [
   },
   {
     id: '3',
+    isPremium: false,
     img: {
       src: 'img/apartment-02.jpg',
       width: 260,
@@ -133,7 +135,7 @@ const offers: Offer[] = [
   },
   {
     id: '4',
-    mark: 'Premium',
+    isPremium: true,
     img: {
       src: 'img/apartment-03.jpg',
       width: 260,
@@ -163,6 +165,7 @@ const offers: Offer[] = [
   },
   {
     id: '5',
+    isPremium: false,
     img: {
       src: 'img/room.jpg',
       width: 260,
