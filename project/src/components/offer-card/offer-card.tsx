@@ -1,21 +1,29 @@
 import {Offer} from '../../types/types';
+import {AppRoute} from '../../constants/constants';
 import Rating from '../rating/rating';
+import {Link} from 'react-router-dom';
 
 type OfferCardProps = {
   offer: Offer;
+  onCardHover: (id: string) => void;
 }
 
-function OfferCard({offer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, onCardHover}: OfferCardProps): JSX.Element {
+
+  const cardMouseOverHandle = (): void => {
+    onCardHover(offer.id);
+  };
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={cardMouseOverHandle}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Room}/${offer.id}`}>
           <img className="place-card__image" src={offer.img.src} width={offer.img.width} height={offer.img.height} alt={offer.img.alt} />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -28,9 +36,9 @@ function OfferCard({offer}: OfferCardProps): JSX.Element {
         <Rating className='place-card' number={offer.rating} />
 
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <Link to={`${AppRoute.Room}/${offer.id}`}>{offer.name}</Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );

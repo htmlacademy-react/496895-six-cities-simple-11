@@ -7,9 +7,7 @@ type LayoutProps = {
   isAuth: boolean;
 }
 
-function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassName | typeof MainElClassName) : string {
-  const pathname = useLocation().pathname;
-
+function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassName | typeof MainElClassName, pathname: string) : string {
   switch(pathname) {
     case AppRoute.Root:
       return enumeration.Main;
@@ -21,9 +19,10 @@ function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassNam
 }
 
 function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
-  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName);
+  const pathname = useLocation().pathname;
+  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
-  const pageElClassName = getElementClassName(isAuth, PageElClassName);
+  const pageElClassName = getElementClassName(isAuth, PageElClassName, pathname);
 
   return (
     <div className={pageElClassName}>

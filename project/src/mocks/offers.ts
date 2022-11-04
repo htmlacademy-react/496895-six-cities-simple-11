@@ -1,6 +1,7 @@
-import {Review, Photos, Offer} from '../types/types';
+import {Review, Photos, Offer, Insides} from '../types/types';
 
 const review: Review = {
+  id: '1',
   user: {
     img: {
       src: 'img/avatar-max.jpg',
@@ -18,29 +19,37 @@ const review: Review = {
 const photos: Photos = [
   {
     src: 'img/room.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '1'
   },
   {
     src: 'img/apartment-01.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '2'
   },
   {
     src: 'img/apartment-02.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '3'
   },
   {
     src: 'img/apartment-03.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '4'
   },
   {
     src: 'img/studio-01.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '5'
   },
   {
     src: 'img/apartment-01.jpg',
-    alt: 'Place image'
+    alt: 'Place image',
+    key: '6'
   }
 ];
+
+const insides: Insides = [{value: 'Wi-Fi', key: '1'}, {value: 'Washing machine', key: '2'}, {value: 'Towels', key: '3'}, {value: 'Heating', key: '4'}, {value: 'Coffee machine', key: '5'}, {value: 'Baby seat', key: '6'}, {value: 'Kitchen', key: '7'}, {value: 'Dishwasher', key: '8'}, {value: 'Cabel TV', key: '9'}];
 
 const offers: Offer[] = [
   {
@@ -57,9 +66,10 @@ const offers: Offer[] = [
     name: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
     bedroomsCount: 4,
+    adultsCount: 4,
     photos: photos,
     capacity: 4,
-    features: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV'],
+    insides: insides,
     user: {
       img: {
         src: 'img/avatar-angelina.jpg',
@@ -70,7 +80,7 @@ const offers: Offer[] = [
       name: 'Angelina',
       isPro: true,
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. \nAn independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    descriptionParagraphs: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.', 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'],
     reviews: [review],
   },
   {
@@ -87,9 +97,10 @@ const offers: Offer[] = [
     name: 'Wood and stone place',
     type: 'Private room',
     bedroomsCount: 4,
+    adultsCount: 4,
     photos: photos,
     capacity: 4,
-    features: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV'],
+    insides: insides,
     user: {
       img: {
         src: 'img/avatar-angelina.jpg',
@@ -100,7 +111,7 @@ const offers: Offer[] = [
       name: 'Angelina',
       isPro: true,
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. \nAn independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    descriptionParagraphs: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.', 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'],
     reviews: [review]
   },
   {
@@ -117,9 +128,10 @@ const offers: Offer[] = [
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
     bedroomsCount: 4,
+    adultsCount: 4,
     photos: photos,
     capacity: 4,
-    features: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV'],
+    insides: insides,
     user: {
       img: {
         src: 'img/avatar-angelina.jpg',
@@ -130,7 +142,7 @@ const offers: Offer[] = [
       name: 'Angelina',
       isPro: true,
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. \nAn independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    descriptionParagraphs: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.', 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'],
     reviews: [review]
   },
   {
@@ -147,9 +159,10 @@ const offers: Offer[] = [
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
     bedroomsCount: 4,
+    adultsCount: 4,
     photos: photos,
     capacity: 4,
-    features: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV'],
+    insides: insides,
     user: {
       img: {
         src: 'img/avatar-angelina.jpg',
@@ -160,7 +173,7 @@ const offers: Offer[] = [
       name: 'Angelina',
       isPro: true,
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. \nAn independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    descriptionParagraphs: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.', 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'],
     reviews: [review]
   },
   {
@@ -177,9 +190,10 @@ const offers: Offer[] = [
     name: 'Wood and stone place',
     type: 'Private room',
     bedroomsCount: 4,
+    adultsCount: 4,
     photos: photos,
     capacity: 4,
-    features: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV'],
+    insides: insides,
     user: {
       img: {
         src: 'img/avatar-angelina.jpg',
@@ -190,7 +204,7 @@ const offers: Offer[] = [
       name: 'Angelina',
       isPro: true,
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. \nAn independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    descriptionParagraphs: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.', 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'],
     reviews: [review]
   }
 ];

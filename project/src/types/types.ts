@@ -10,6 +10,7 @@ type User = {
 }
 
 type Review = {
+  id: string;
   user: User;
   rating: number;
   text: string;
@@ -19,6 +20,12 @@ type Review = {
 type Photos = {
   src: string;
   alt: string;
+  key: string;
+}[]
+
+type Insides = {
+  key: string;
+  value: string;
 }[]
 
 type Offer = {
@@ -35,12 +42,13 @@ type Offer = {
   name: string;
   type: string;
   bedroomsCount: number;
+  adultsCount: number;
   photos: Photos;
   capacity: number;
-  features: string[];
+  insides: Insides;
   user: User;
-  description: string;
+  descriptionParagraphs: string[];
   reviews: Review[];
 }
 
-export type {Review, Photos, Offer};
+export type {Review, Photos, Offer, Insides};
