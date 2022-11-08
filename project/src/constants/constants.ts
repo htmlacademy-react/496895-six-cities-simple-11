@@ -17,4 +17,9 @@ enum PageElClassName {
   Room = 'page'
 }
 
-export {AppRoute, MainElClassName, PageElClassName};
+enum RatingSetting {
+  StarCount = 5,
+  MaxPercent = 100,
+}
+
+export {AppRoute, MainElClassName, PageElClassName, RatingSetting};

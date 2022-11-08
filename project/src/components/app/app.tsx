@@ -20,7 +20,7 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.Root} element={<Layout isAuth={props.isAuth} isOffersEmpty={isOffersEmpty} />}>
           <Route index element={<MainScreen offers={props.offers} isOffersEmpty={isOffersEmpty} />} />
           <Route path={AppRoute.Login} element={props.isAuth ? <Navigate to={AppRoute.Root} /> : <LoginScreen />} />
-          <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen offers={props.offers} />} />
+          <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen offers={props.offers} isAuth={props.isAuth} />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Route>
       </Routes>

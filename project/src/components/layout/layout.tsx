@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom';
+import {Outlet, useLocation} from 'react-router-dom';
 import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 
@@ -7,36 +7,22 @@ type LayoutProps = {
   isAuth: boolean;
 }
 
-function getMainElClassName(isAuth: boolean) : string {
-  const pathname = window.location.pathname;
-
+function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | typeof MainElClassName, pathname: string) : string {
   switch(pathname) {
     case AppRoute.Root:
-      return MainElClassName.Main;
+      return routes.Main;
     case AppRoute.Login:
-      return isAuth ? MainElClassName.Main : MainElClassName.Login;
+      return isAuth ? routes.Main : routes.Login;
     default:
-      return MainElClassName.Room;
-  }
-}
-
-function getPageElClassName(isAuth: boolean) : string {
-  const pathname = window.location.pathname;
-
-  switch(pathname) {
-    case AppRoute.Root:
-      return PageElClassName.Main;
-    case AppRoute.Login:
-      return isAuth ? PageElClassName.Main : PageElClassName.Login;
-    default:
-      return PageElClassName.Room;
+      return routes.Room;
   }
 }
 
 function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
-  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getMainElClassName(isAuth);
+  const {pathname} = useLocation();
+  const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
-  const pageElClassName = getPageElClassName(isAuth);
+  const pageElClassName = getElementClassName(isAuth, PageElClassName, pathname);
 
   return (
     <div className={pageElClassName}>

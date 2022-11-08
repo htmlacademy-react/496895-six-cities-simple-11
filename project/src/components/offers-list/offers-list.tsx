@@ -1,5 +1,6 @@
 import OfferCard from '../../components/offer-card/offer-card';
 import {Offer} from '../../types/types';
+import {useState} from 'react';
 
 type OffersListProps = {
   offers: Offer[];
@@ -7,6 +8,12 @@ type OffersListProps = {
 }
 
 function OffersList({offers, isOffersEmpty}: OffersListProps): JSX.Element {
+  const [, setCardId] = useState('');
+
+  const cardMouseOverHandle = (id: string) => {
+    setCardId(id);
+  };
+
   return (
     <div className="cities">
       {!isOffersEmpty &&
@@ -30,7 +37,7 @@ function OffersList({offers, isOffersEmpty}: OffersListProps): JSX.Element {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {offers.map((offer) => <OfferCard key={offer.id} offer={offer} />)}
+              {offers.map((offer) => <OfferCard key={offer.id} onCardHover={cardMouseOverHandle} offer={offer} />)}
             </div>
           </section>
           <div className="cities__right-section">
