@@ -1,4 +1,4 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, useEffect, ChangeEvent} from 'react';
 import RatingStar from '../rating-star/rating-star';
 
 enum ReviewLength {
@@ -9,21 +9,17 @@ enum ReviewLength {
 const labelTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
 function ReviewForm(): JSX.Element {
-  const [formData, setFormData] = useState({
-    review: '',
-    isValid: false
-  });
-
   const [currentRating, setCurrentRating] = useState('');
+  const [review, setReview] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
-  const validate = () => {
-    setFormData((prevFormData) => ({...prevFormData, isValid: prevFormData.review.length >= ReviewLength.Min && prevFormData.review.length <= ReviewLength.Max && currentRating !== null}));
-  };
+  useEffect(() => {
+    setIsValid(review.length >= ReviewLength.Min && review.length <= ReviewLength.Max && currentRating !== '');
+  }, [currentRating, review]);
 
-  const fieldChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value});
-    validate();
+  const fieldChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    const {value} = evt.target;
+    setReview(value);
   };
 
   const radioChangeHandle = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -37,15 +33,24 @@ function ReviewForm(): JSX.Element {
       </label>
 
       <div className="reviews__rating-form form__rating">
-        {labelTitles.map((labelTitle, index) => <RatingStar key={labelTitle} currentOrder={(labelTitles.length - index).toString()} labelTitle={labelTitle} currentRating={currentRating} onChangeHandle={radioChangeHandle} />)}
+        {labelTitles.map((labelTitle, index) => (
+          <RatingStar
+            key={labelTitle}
+            currentOrder={`${labelTitles.length - index}`}
+            labelTitle={labelTitle}
+            currentRating={currentRating}
+            onChangeHandle={radioChangeHandle}
+          />
+        )
+        )}
       </div>
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={formData.review}
-        onChange={fieldChangeHandle}
+        defaultValue={review}
+        onChange={fieldChangeHandler}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -57,7 +62,7 @@ function ReviewForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!formData.isValid}
+          disabled={!isValid}
         >
           Submit
         </button>

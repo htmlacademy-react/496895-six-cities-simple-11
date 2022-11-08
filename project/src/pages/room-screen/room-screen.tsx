@@ -14,11 +14,15 @@ const MAX_PHOTO_COUNT = 6;
 function RoomScreen({offers, isAuth}: RoomScreenProps): JSX.Element {
   const params = useParams();
   const offer = offers.find((item) => item.id === params.id);
+
+  // http://joxi.ru/Rmz48MlTVjzePA
+  // Ошибка при попытке сделать деструктуризацию объекта offer
+
   return offer ? (
     <>
       <section className="property">
         <div className="property__gallery-container container">
-          {offer.photos.length !== 0 &&
+          {Boolean(offer.photos.length) &&
           <div className="property__gallery">
             {offer.photos.slice(0, MAX_PHOTO_COUNT).map((photo) => (
               <div key={photo.key} className="property__image-wrapper">

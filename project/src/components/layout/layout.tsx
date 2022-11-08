@@ -19,7 +19,7 @@ function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | t
 }
 
 function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
-  const pathname = useLocation().pathname;
+  const {pathname} = useLocation();
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
   const pageElClassName = getElementClassName(isAuth, PageElClassName, pathname);
