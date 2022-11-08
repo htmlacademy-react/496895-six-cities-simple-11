@@ -7,14 +7,14 @@ type LayoutProps = {
   isAuth: boolean;
 }
 
-function getElementClassName(isAuth: boolean, enumeration: typeof PageElClassName | typeof MainElClassName, pathname: string) : string {
+function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | typeof MainElClassName, pathname: string) : string {
   switch(pathname) {
     case AppRoute.Root:
-      return enumeration.Main;
+      return routes.Main;
     case AppRoute.Login:
-      return isAuth ? enumeration.Main : enumeration.Login;
+      return isAuth ? routes.Main : routes.Login;
     default:
-      return enumeration.Room;
+      return routes.Room;
   }
 }
 
