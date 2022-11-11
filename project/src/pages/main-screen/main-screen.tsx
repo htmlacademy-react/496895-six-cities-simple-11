@@ -1,4 +1,6 @@
 import OffersList from '../../components/offers-list/offers-list';
+import Map from '../../components/map/map';
+import NoPlaces from '../../components/no-places/no-places';
 import {Offer} from '../../types/types';
 
 type MainScreenProps = {
@@ -47,7 +49,14 @@ function MainScreen({offers, isOffersEmpty}: MainScreenProps): JSX.Element {
         </section>
       </div>
 
-      <OffersList offers={offers} isOffersEmpty={isOffersEmpty} />
+      <div className="cities">
+        <div className={`cities__places-container ${isOffersEmpty ? 'cities__places-container--empty ' : ''}container`}>
+          {isOffersEmpty ? <NoPlaces /> : <OffersList offers={offers} />}
+          <div className="cities__right-section">
+            {!isOffersEmpty && <Map />}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
