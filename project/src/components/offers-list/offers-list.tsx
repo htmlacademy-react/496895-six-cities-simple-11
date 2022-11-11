@@ -8,9 +8,9 @@ type OffersListProps = {
 }
 
 function OffersList({offers, isOffersEmpty}: OffersListProps): JSX.Element {
-  const [, setCardId] = useState('');
+  const [, setCardId] = useState(0);
 
-  const cardMouseOverHandle = (id: string) => {
+  const cardMouseOverHandler = (id: number) => {
     setCardId(id);
   };
 
@@ -37,7 +37,7 @@ function OffersList({offers, isOffersEmpty}: OffersListProps): JSX.Element {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {offers.map((offer) => <OfferCard key={offer.id} onCardHover={cardMouseOverHandle} offer={offer} />)}
+              {offers.map((offer) => <OfferCard key={offer.id} onCardHover={cardMouseOverHandler} offer={offer} />)}
             </div>
           </section>
           <div className="cities__right-section">
