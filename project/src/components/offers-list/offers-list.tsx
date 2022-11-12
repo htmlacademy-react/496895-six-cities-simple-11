@@ -1,18 +1,12 @@
 import OfferCard from '../../components/offer-card/offer-card';
 import {Offer} from '../../types/types';
-import {useState} from 'react';
 
 type OffersListProps = {
   offers: Offer[];
+  onCardHover: (id: number) => void;
 }
 
-function OffersList({offers}: OffersListProps): JSX.Element {
-  const [, setCardId] = useState(0);
-
-  const cardMouseOverHandler = (id: number) => {
-    setCardId(id);
-  };
-
+function OffersList({offers, onCardHover}: OffersListProps): JSX.Element {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -33,7 +27,7 @@ function OffersList({offers}: OffersListProps): JSX.Element {
         </ul>
       </form>
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <OfferCard key={offer.id} onCardHover={cardMouseOverHandler} offer={offer} />)}
+        {offers.map((offer) => <OfferCard key={offer.id} onCardHover={onCardHover} offer={offer} />)}
       </div>
     </section>
   );
