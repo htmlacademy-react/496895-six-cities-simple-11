@@ -1,13 +1,5 @@
-import {Offer, City} from '../types/types';
-
-const city: City = {
-  location: {
-    latitude: 52.370216,
-    longitude: 4.895168,
-    zoom: 10,
-  },
-  name: 'Amsterdam'
-};
+import {Offer} from '../types/types';
+import {city} from './city';
 
 const photos: string[] = ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'];
 
@@ -143,7 +135,7 @@ const offers: Offer[] = [
     previewImage: 'img/room.jpg',
     price: 80,
     rating: 3.7,
-    title: 'Wood and stone place',
+    title: 'Wood and stone place ',
     type: 'Private room'
   }
 ];

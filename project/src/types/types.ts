@@ -5,15 +5,6 @@ type User = {
   name: string;
 }
 
-type City = {
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
-  name: string;
-}
-
 type Review = {
   comment: string;
   date: string;
@@ -26,6 +17,11 @@ type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
+}
+
+type City = {
+  location: Location;
+  name: string;
 }
 
 type Offer = {
@@ -49,4 +45,4 @@ type Offer = {
   type: string;
 }
 
-export type {Review, Offer, City};
+export type {Review, Offer, City, Location};
