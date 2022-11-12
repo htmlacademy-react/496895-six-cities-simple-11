@@ -1,54 +1,48 @@
 type User = {
-  img: {
-    src: string;
-    width: number;
-    height: number;
-    alt: string;
-  };
+  avatarUrl: string;
+  id: number;
+  isPro: boolean;
   name: string;
-  isPro?: boolean;
 }
 
 type Review = {
-  id: string;
-  user: User;
-  rating: number;
-  text: string;
+  comment: string;
   date: string;
+  id: number;
+  rating: number;
+  user: User;
 }
 
-type Photos = {
-  src: string;
-  alt: string;
-  key: string;
-}[]
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
 
-type Insides = {
-  key: string;
-  value: string;
-}[]
+type City = {
+  location: Location;
+  name: string;
+}
 
 type Offer = {
-  id: string;
-  isPremium: boolean;
-  img: {
-    src: string;
-    width: number | string;
-    height: number | string;
-    alt: string;
+  bedrooms: number;
+  city: {
+    location: Location;
+    name: string;
   };
-  price: number | string;
+  description: string;
+  goods: string[];
+  host: User;
+  id: number;
+  images: string[];
+  isPremium: boolean;
+  location: Location;
+  maxAdults: number;
+  previewImage: string;
+  price: number;
   rating: number;
-  name: string;
+  title: string;
   type: string;
-  bedroomsCount: number;
-  adultsCount: number;
-  photos: Photos;
-  capacity: number;
-  insides: Insides;
-  user: User;
-  descriptionParagraphs: string[];
-  reviews: Review[];
 }
 
-export type {Review, Photos, Offer, Insides};
+export type {Review, Offer, City, Location};

@@ -1,12 +1,23 @@
 import OffersList from '../../components/offers-list/offers-list';
-import {Offer} from '../../types/types';
+import Map from '../../components/map/map';
+import NoPlaces from '../../components/no-places/no-places';
+import {Offer, City} from '../../types/types';
+
+import {useState} from 'react';
 
 type MainScreenProps = {
   offers: Offer[];
   isOffersEmpty: boolean;
+  city: City;
 }
 
-function MainScreen({offers, isOffersEmpty}: MainScreenProps): JSX.Element {
+function MainScreen({offers, isOffersEmpty, city}: MainScreenProps): JSX.Element {
+  const [id, setCardId] = useState(0);
+
+  const cardMouseOverHandler = (cardId: number) => {
+    setCardId(cardId);
+  };
+
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -47,7 +58,14 @@ function MainScreen({offers, isOffersEmpty}: MainScreenProps): JSX.Element {
         </section>
       </div>
 
-      <OffersList offers={offers} isOffersEmpty={isOffersEmpty} />
+      <div className="cities">
+        <div className={`cities__places-container ${isOffersEmpty ? 'cities__places-container--empty ' : ''}container`}>
+          {isOffersEmpty ? <NoPlaces /> : <OffersList onCardHover={cardMouseOverHandler} offers={offers} />}
+          <div className="cities__right-section">
+            {!isOffersEmpty && <Map offers={offers} selectedOffer={offers.find((offer) => offer.id === id)} city={city} secondaryСlassName="cities__map" />}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

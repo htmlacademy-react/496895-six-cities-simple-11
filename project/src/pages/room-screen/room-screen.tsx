@@ -1,32 +1,48 @@
 import {useParams} from 'react-router-dom';
-import {Offer} from './../../types/types';
+import {Offer, Review} from './../../types/types';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import Rating from '../../components/rating/rating';
 import ReviewForm from '../../components/review-form/review-form';
 
 type RoomScreenProps = {
   offers: Offer[];
+  reviews: Review[];
   isAuth: boolean;
 }
 
 const MAX_PHOTO_COUNT = 6;
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-function RoomScreen({offers, isAuth}: RoomScreenProps): JSX.Element {
+const getDateText = (data: string): string => {
+  const date = new Date(data);
+  const year = date.getFullYear();
+  const monthNumber = date.getMonth();
+
+  return `${MONTHS[monthNumber]} ${year}`;
+};
+
+const getDateTime = (data: string): string => {
+  const date = new Date(data);
+  const year = date.getFullYear();
+  const monthNumber = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+
+  return `${year}-${monthNumber}-${day}`;
+};
+
+function RoomScreen({offers, reviews, isAuth}: RoomScreenProps): JSX.Element {
   const params = useParams();
-  const offer = offers.find((item) => item.id === params.id);
-
-  // http://joxi.ru/Rmz48MlTVjzePA
-  // Ошибка при попытке сделать деструктуризацию объекта offer
+  const offer = offers.find((item) => `${item.id}` === params.id);
 
   return offer ? (
     <>
       <section className="property">
         <div className="property__gallery-container container">
-          {Boolean(offer.photos.length) &&
+          {Boolean(offer.images.length) &&
           <div className="property__gallery">
-            {offer.photos.slice(0, MAX_PHOTO_COUNT).map((photo) => (
-              <div key={photo.key} className="property__image-wrapper">
-                <img className="property__image" src={photo.src} alt={photo.alt} />
+            {offer.images.slice(0, MAX_PHOTO_COUNT).map((photo, index) => (
+              <div className="property__image-wrapper" key={photo.slice(index)}>
+                <img className="property__image" src={photo} alt="Photo studio" />
               </div>
             ))}
           </div>}
@@ -40,7 +56,7 @@ function RoomScreen({offers, isAuth}: RoomScreenProps): JSX.Element {
 
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {offer.name}
+                {offer.title}
               </h1>
             </div>
 
@@ -51,10 +67,10 @@ function RoomScreen({offers, isAuth}: RoomScreenProps): JSX.Element {
                 {offer.type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {`${offer.bedroomsCount} Bedroom${offer.bedroomsCount > 1 ? 's' : ''}`}
+                {`${offer.bedrooms} Bedroom${offer.bedrooms > 1 ? 's' : ''}`}
               </li>
               <li className="property__feature property__feature--adults">
-                {`Max ${offer.adultsCount} adult${offer.adultsCount > 1 ? 's' : ''}`}
+                {`Max ${offer.maxAdults} adult${offer.maxAdults > 1 ? 's' : ''}`}
               </li>
             </ul>
 
@@ -66,62 +82,64 @@ function RoomScreen({offers, isAuth}: RoomScreenProps): JSX.Element {
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                {offer.insides.map((inside) => (<li key={inside.key} className="property__inside-item">{inside.value}</li>))}
+                {offer.goods.map((good) => (<li key={good} className="property__inside-item">{good}</li>))}
               </ul>
             </div>
             <div className="property__host">
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
-                <div className={`property__avatar-wrapper ${offer.user.isPro ? 'property__avatar-wrapper--pro ' : ''}user__avatar-wrapper`}>
+                <div className={`property__avatar-wrapper ${offer.host.isPro ? 'property__avatar-wrapper--pro ' : ''}user__avatar-wrapper`}>
                   <img
                     className="property__avatar user__avatar"
-                    src={offer.user.img.src}
-                    width={offer.user.img.width}
-                    height={offer.user.img.height}
-                    alt={offer.user.img.alt}
+                    src={offer.host.avatarUrl}
+                    width="74"
+                    height="74"
+                    alt={`${offer.host.name} avatar`}
                   />
                 </div>
-                <span className="property__user-name">{offer.user.name}</span>
-                {offer.user.isPro &&
+                <span className="property__user-name">{offer.host.name}</span>
+                {offer.host.isPro &&
                 <span className="property__user-status">Pro</span>}
 
               </div>
               <div className="property__description">
-                {offer.descriptionParagraphs.map((paragraph) => (<p key={paragraph.slice(0, 20)}>{paragraph}</p>))}
+                {offer.description}
               </div>
             </div>
 
             <section className="property__reviews reviews">
               <h2 className="reviews__title">
-                Reviews · <span className="reviews__amount">{offer.reviews.length}</span>
+                Reviews · <span className="reviews__amount">{reviews.length}</span>
               </h2>
-              <ul className="reviews__list">
-                {offer.reviews.map((review) => (
-                  <li key={review.id} className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img
-                          className="reviews__avatar user__avatar"
-                          src={review.user.img.src}
-                          width={review.user.img.width}
-                          height={review.user.img.height}
-                          alt={review.user.img.alt}
-                        />
+              {Boolean(reviews.length) &&
+                <ul className="reviews__list">
+                  {reviews.map((review) => (
+                    <li key={review.id} className="reviews__item">
+                      <div className="reviews__user user">
+                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                          <img
+                            className="reviews__avatar user__avatar"
+                            src={review.user.avatarUrl}
+                            width="54"
+                            height="54"
+                            alt="Reviews avatar"
+                          />
+                        </div>
+                        <span className="reviews__user-name">{review.user.name}</span>
                       </div>
-                      <span className="reviews__user-name">{review.user.name}</span>
-                    </div>
-                    <div className="reviews__info">
-                      <Rating className='reviews' number={review.rating} />
-                      <p className="reviews__text">
-                        {review.text}
-                      </p>
-                      <time className="reviews__time" dateTime={review.date}>
-                        April 2019
-                      </time>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                      <div className="reviews__info">
+                        <Rating className='reviews' number={review.rating} />
+                        <p className="reviews__text">
+                          {review.comment}
+                        </p>
+                        <time className="reviews__time" dateTime={getDateTime(review.date)}>
+                          {getDateText(review.date)}
+                        </time>
+                      </div>
+                    </li>
+                  ))}
+                </ul>}
+
               {isAuth && <ReviewForm />}
             </section>
           </div>
