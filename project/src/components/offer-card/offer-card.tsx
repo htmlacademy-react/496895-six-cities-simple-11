@@ -1,27 +1,33 @@
-import {Offer} from '../../types/types';
+import {TOffer} from '../../types/types';
 import {AppRoute} from '../../constants/constants';
 import Rating from '../rating/rating';
 import {Link} from 'react-router-dom';
 
-type OfferCardProps = {
-  offer: Offer;
-  onCardHover: (id: number) => void;
+type TOfferCardProps = {
+  offer: TOffer;
+  onCardHover?: (id: number) => void | undefined;
+  isNear?: boolean;
 }
 
-function OfferCard({offer, onCardHover}: OfferCardProps): JSX.Element {
+function OfferCard({offer, onCardHover, isNear}: TOfferCardProps): JSX.Element {
   const {isPremium, id, previewImage, price, rating, title, type} = offer;
 
-  const cardMouseOverHandler = (): void => {
-    onCardHover(id);
+  const cardClassName = isNear ? 'near-places__card' : 'cities__card';
+  const cardImageWrapperClassName = isNear ? 'near-places__image-wrapper' : 'cities__image-wrapper';
+
+  const cardMouseOverHandler = isNear ? undefined : () : void => {
+    if (onCardHover) {
+      onCardHover(id);
+    }
   };
 
   return (
-    <article className="cities__card place-card" onMouseOver={cardMouseOverHandler}>
+    <article className={`${cardClassName} place-card`} onMouseOver={cardMouseOverHandler}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${cardImageWrapperClassName} place-card__image-wrapper`}>
         <Link to={`${AppRoute.Room}/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
