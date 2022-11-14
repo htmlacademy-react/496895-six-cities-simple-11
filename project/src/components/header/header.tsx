@@ -2,11 +2,11 @@ import {AppRoute} from '../../constants/constants';
 import Logo from '../logo/logo';
 import HeaderNav from '../header-nav/header-nav';
 
-type HeaderProps = {
+type THeaderProps = {
   isAuth: boolean;
 }
 
-function Header({isAuth}: HeaderProps): JSX.Element {
+function Header({isAuth}: THeaderProps): JSX.Element {
   const isMainPage = window.location.pathname === AppRoute.Root;
 
   return (

@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants/constants';
 
-type LogoProps = {
+type TLogoProps = {
   isMainPage: boolean;
 }
-function Logo({isMainPage}: LogoProps): JSX.Element {
+function Logo({isMainPage}: TLogoProps): JSX.Element {
   return (
     <>
       {isMainPage &&

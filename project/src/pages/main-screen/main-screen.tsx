@@ -1,17 +1,17 @@
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import NoPlaces from '../../components/no-places/no-places';
-import {Offer, City} from '../../types/types';
+import {TOffer, TCity} from '../../types/types';
 
 import {useState} from 'react';
 
-type MainScreenProps = {
-  offers: Offer[];
+type TMainScreenProps = {
+  offers: TOffer[];
   isOffersEmpty: boolean;
-  city: City;
+  city: TCity;
 }
 
-function MainScreen({offers, isOffersEmpty, city}: MainScreenProps): JSX.Element {
+function MainScreen({offers, isOffersEmpty, city}: TMainScreenProps): JSX.Element {
   const [id, setCardId] = useState(0);
 
   const cardMouseOverHandler = (cardId: number) => {

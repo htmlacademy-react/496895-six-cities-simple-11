@@ -1,16 +1,16 @@
 import {Icon, Marker} from 'leaflet';
-import {City, Offer} from '../../types/types';
+import {TCity, TOffer} from '../../types/types';
 import {MarkerUrl} from '../../constants/constants';
 import {useEffect, useRef} from 'react';
 import useMap from '../../hooks/useMap';
 
 import 'leaflet/dist/leaflet.css';
 
-type MapProps = {
+type TMapProps = {
   secondaryСlassName: string;
-  city: City;
-  offers: Offer[];
-  selectedOffer: Offer | undefined;
+  city: TCity;
+  offers: TOffer[];
+  selectedOffer: TOffer | undefined;
 }
 
 const defaultCustomIcon = new Icon({
@@ -25,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, offers, selectedOffer, secondaryСlassName}: MapProps): JSX.Element {
+function Map({city, offers, selectedOffer, secondaryСlassName}: TMapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 

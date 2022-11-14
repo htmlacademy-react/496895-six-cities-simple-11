@@ -1,42 +1,42 @@
-type User = {
+type TUser = {
   avatarUrl: string;
   id: number;
   isPro: boolean;
   name: string;
 }
 
-type Review = {
+type TReview = {
   comment: string;
   date: string;
   id: number;
   rating: number;
-  user: User;
+  user: TUser;
 }
 
-type Location = {
+type TLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-type City = {
-  location: Location;
+type TCity = {
+  location: TLocation;
   name: string;
 }
 
-type Offer = {
+type TOffer = {
   bedrooms: number;
   city: {
-    location: Location;
+    location: TLocation;
     name: string;
   };
   description: string;
   goods: string[];
-  host: User;
+  host: TUser;
   id: number;
   images: string[];
   isPremium: boolean;
-  location: Location;
+  location: TLocation;
   maxAdults: number;
   previewImage: string;
   price: number;
@@ -45,4 +45,4 @@ type Offer = {
   type: string;
 }
 
-export type {Review, Offer, City, Location};
+export type {TReview, TOffer, TCity, TLocation};

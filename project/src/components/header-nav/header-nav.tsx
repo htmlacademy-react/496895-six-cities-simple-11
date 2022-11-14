@@ -1,8 +1,8 @@
-type HeaderNavProps = {
+type THeaderNavProps = {
   isAuth: boolean;
 }
 
-function HeaderNav({isAuth}: HeaderNavProps): JSX.Element {
+function HeaderNav({isAuth}: THeaderNavProps): JSX.Element {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
