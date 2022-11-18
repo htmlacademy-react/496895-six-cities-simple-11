@@ -32,4 +32,16 @@ enum LeafletLayer {
   Attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 }
 
-export {AppRoute, MainElClassName, PageElClassName, RatingSetting, MarkerUrl, LeafletLayer};
+const MAX_PHOTO_COUNT = 6;
+const MAX_REVIEWS_COUNT = 10;
+
+export {
+  AppRoute,
+  MainElClassName,
+  PageElClassName,
+  RatingSetting,
+  MarkerUrl,
+  LeafletLayer,
+  MAX_PHOTO_COUNT,
+  MAX_REVIEWS_COUNT
+};

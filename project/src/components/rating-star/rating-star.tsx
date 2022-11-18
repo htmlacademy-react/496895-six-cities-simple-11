@@ -1,13 +1,13 @@
 import {ChangeEvent} from 'react';
 
-type RatingStarPrrops = {
+type TRatingStarPrrops = {
   currentOrder: string;
   currentRating: string;
   labelTitle: string;
   onChangeHandle: (evt: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function RatingStar({currentOrder, labelTitle, onChangeHandle, currentRating}: RatingStarPrrops): JSX.Element {
+function RatingStar({currentOrder, labelTitle, onChangeHandle, currentRating}: TRatingStarPrrops): JSX.Element {
 
   return (
     <>

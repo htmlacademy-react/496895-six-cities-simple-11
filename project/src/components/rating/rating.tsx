@@ -1,13 +1,13 @@
 import {RatingSetting} from '../../constants/constants';
 
-type RatingProps = {
+type TRatingProps = {
   className: string;
   number: number;
   isShowNumer?: boolean;
   isMathFloorNumber?: boolean;
 }
 
-function Rating({className, number, isShowNumer, isMathFloorNumber}: RatingProps): JSX.Element {
+function Rating({className, number, isShowNumer, isMathFloorNumber}: TRatingProps): JSX.Element {
   const ratingAsPercentage = (RatingSetting.MaxPercent / RatingSetting.StarCount) * Math[isMathFloorNumber ? 'floor' : 'round'](number);
   return (
     <div className={`${className}__rating rating`}>

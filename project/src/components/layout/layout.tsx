@@ -2,7 +2,7 @@ import {Outlet, useLocation} from 'react-router-dom';
 import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 
-type LayoutProps = {
+type TLayoutProps = {
   isOffersEmpty: boolean;
   isAuth: boolean;
 }
@@ -18,7 +18,7 @@ function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | t
   }
 }
 
-function Layout({isOffersEmpty, isAuth}: LayoutProps): JSX.Element {
+function Layout({isOffersEmpty, isAuth}: TLayoutProps): JSX.Element {
   const {pathname} = useLocation();
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
