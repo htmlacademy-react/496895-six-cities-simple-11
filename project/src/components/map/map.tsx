@@ -7,9 +7,9 @@ import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type TMapProps = {
+  offers: TOffer[];
   secondaryСlassName: string;
   city: TCity;
-  offers: TOffer[];
   selectedOffer: TOffer | undefined;
 }
 
@@ -25,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, offers, selectedOffer, secondaryСlassName}: TMapProps): JSX.Element {
+function Map({offers, city, selectedOffer, secondaryСlassName} : TMapProps) : JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -39,14 +39,18 @@ function Map({city, offers, selectedOffer, secondaryСlassName}: TMapProps): JSX
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.title === selectedOffer.title
+            selectedOffer !== undefined && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
+
+
       });
+
+      map.flyTo({lat: city.location.latitude, lng: city.location.longitude});
     }
-  }, [map, offers, selectedOffer]);
+  }, [city, map, offers, selectedOffer]);
 
   return (
     <section className={`${secondaryСlassName} map`} ref={mapRef}></section>

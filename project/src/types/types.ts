@@ -1,3 +1,5 @@
+import {store} from '../store';
+
 type TUser = {
   avatarUrl: string;
   id: number;
@@ -45,4 +47,7 @@ type TOffer = {
   type: string;
 }
 
-export type {TReview, TOffer, TCity, TLocation};
+type TState = ReturnType<typeof store.getState>;
+type TAppDispatch = typeof store.dispatch;
+
+export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch};
