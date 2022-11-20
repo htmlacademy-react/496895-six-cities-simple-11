@@ -22,7 +22,7 @@ function OffersList({offers, onCardHover, isNear}: TOffersListProps): JSX.Elemen
 
       {!isNear &&
         <>
-          <b className="places__found">312 places to stay in Amsterdam</b>
+          <b className="places__found">{offers.length} places to stay in {offers[0].city.name}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
