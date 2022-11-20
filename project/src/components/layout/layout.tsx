@@ -1,10 +1,10 @@
 import {Outlet, useLocation} from 'react-router-dom';
 import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 type TLayoutProps = {
   isOffersEmpty: boolean;
-  isAuth: boolean;
 }
 
 function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | typeof MainElClassName, pathname: string) : string {
@@ -18,8 +18,11 @@ function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | t
   }
 }
 
-function Layout({isOffersEmpty, isAuth}: TLayoutProps): JSX.Element {
+function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   const {pathname} = useLocation();
+
+  const isAuth = useAppSelector((state) => state.isAuth);
+
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
   const pageElClassName = getElementClassName(isAuth, PageElClassName, pathname);
