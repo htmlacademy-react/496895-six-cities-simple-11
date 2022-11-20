@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {offers, nearbyOffers} from './mocks/offers';
+import {Provider} from 'react-redux';
 import {reviews} from './mocks/reviews';
-import {city} from './mocks/city';
+import {store} from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-const isAuth = true;
 
 root.render(
   <React.StrictMode>
-    <App isAuth={isAuth} reviews={reviews} offers={offers} nearbyOffers={nearbyOffers} city={city} />
+    <Provider store={store}>
+      <App reviews={reviews} />
+    </Provider>
   </React.StrictMode>,
 );
