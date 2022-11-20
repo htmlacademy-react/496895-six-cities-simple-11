@@ -1,5 +1,5 @@
 import {useParams} from 'react-router-dom';
-import {TOffer, TReview} from './../../types/types';
+import {TReview} from './../../types/types';
 import {MAX_PHOTO_COUNT} from './../../constants/constants';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import Rating from '../../components/rating/rating';
@@ -7,17 +7,18 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import Map from '../../components/map/map';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 type TRoomScreenProps = {
-  offers: TOffer[];
-  nearbyOffers: TOffer[];
   reviews: TReview[];
-  isAuth: boolean;
 }
 
-function RoomScreen({offers, nearbyOffers, reviews, isAuth}: TRoomScreenProps): JSX.Element {
+function RoomScreen({reviews}: TRoomScreenProps): JSX.Element {
+
+  const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
+  const isAuth = useAppSelector((state) => state.isAuth);
   const params = useParams();
-  const offer = offers.find((item) => `${item.id}` === params.id);
+  const offer = offersByCurrentCity.find((item) => `${item.id}` === params.id);
 
   return offer ? (
     <>
@@ -101,10 +102,11 @@ function RoomScreen({offers, nearbyOffers, reviews, isAuth}: TRoomScreenProps): 
             </section>
           </div>
         </div>
-        <Map offers={[offer, ...nearbyOffers]} selectedOffer={offer} city={offer.city} secondaryСlassName="property__map" />
+
+        <Map offers={offersByCurrentCity} selectedOffer={offer} city={offer.city} secondaryСlassName="property__map" />
       </section>
       <div className="container">
-        <OffersList offers={nearbyOffers} isNear />
+        <OffersList offers={offersByCurrentCity.filter((offerByCurrentCity) => offerByCurrentCity.id !== offer.id)} isNear />
       </div>
     </>
   ) : (<NotFoundScreen />);
