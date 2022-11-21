@@ -1,6 +1,8 @@
 import {SyntheticEvent} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {changeCityAction, getOffersAction} from '../../store/action';
+import {changeCityAction, getOffersAction, changeSortingTypeAction} from '../../store/action';
+
+import {DEFAULT_OFFERS_SORTING_OPTION} from '../../constants/constants';
 
 type TLocationProps = {
   cityName: string;
@@ -16,6 +18,7 @@ function Location({cityName, isActive} : TLocationProps) : JSX.Element {
     evt.preventDefault();
     dispatch(changeCityAction(cityName));
     dispatch(getOffersAction());
+    dispatch(changeSortingTypeAction(DEFAULT_OFFERS_SORTING_OPTION));
   };
 
   return (
