@@ -1,3 +1,6 @@
+import {sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction} from '../store/action';
+import {TSortingEnum} from '../types/types';
+
 enum AppRoute {
   Root = '/',
   Room = '/offer',
@@ -32,9 +35,25 @@ enum LeafletLayer {
   Attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 }
 
+const SortingType = {
+  Popular: 'Popular',
+  PriceLowToHigh: 'Price: low to high',
+  PriceHighToLow: 'Price: high to low',
+  TopRatedFirst: 'Top rated first'
+} as const;
+
+const sortingActionsMap = {
+  'Popular': sortByPopularAction,
+  'Price: low to high': sortByPriceLowToHighAction,
+  'Price: high to low': sortByPriceHighToLowAction,
+  'Top rated first': sortByRatedFirstAction
+};
+
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+const SORTING_OPTIONS: TSortingEnum[] = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
 
 const DEFAULT_CITY_NAME = 'Paris';
+const DEFAULT_OFFERS_SORTING_OPTION: TSortingEnum = 'Popular';
 const MAX_PHOTO_COUNT = 6;
 const MAX_REVIEWS_COUNT = 10;
 
@@ -48,5 +67,9 @@ export {
   MAX_PHOTO_COUNT,
   MAX_REVIEWS_COUNT,
   CITIES_NAMES,
-  DEFAULT_CITY_NAME
+  DEFAULT_CITY_NAME,
+  DEFAULT_OFFERS_SORTING_OPTION,
+  SORTING_OPTIONS,
+  SortingType,
+  sortingActionsMap
 };
