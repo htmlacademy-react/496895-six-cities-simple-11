@@ -15,14 +15,14 @@ type TMapProps = {
 
 const defaultCustomIcon = new Icon({
   iconUrl: MarkerUrl.Default,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: MarkerUrl.Current,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 function Map({offers, city, selectedOffer, secondaryСlassName} : TMapProps) : JSX.Element {

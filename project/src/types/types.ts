@@ -1,4 +1,5 @@
 import {store} from '../store';
+import {SortingType} from '../constants/constants';
 
 type TUser = {
   avatarUrl: string;
@@ -50,4 +51,6 @@ type TOffer = {
 type TState = ReturnType<typeof store.getState>;
 type TAppDispatch = typeof store.dispatch;
 
-export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch};
+type TSortingEnum = typeof SortingType[keyof typeof SortingType];
+
+export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum};
