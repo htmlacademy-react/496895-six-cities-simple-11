@@ -9,7 +9,7 @@ import SortingOption from '../sorting-option/sorting-option';
 function Sorting() : JSX.Element {
   const [isActive, setIsActive] = useState(false);
   const dispatch = useAppDispatch();
-  const selectedOption = useAppSelector((staate) => staate.sortingType);
+  const selectedOption = useAppSelector((state) => state.sortingType);
   const modifierClassName = isActive ? ' places__options--opened' : '';
 
   const handleOptionClick = (sortingType: TSortingEnum) => {
