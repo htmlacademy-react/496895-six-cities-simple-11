@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {TSortingEnum} from '../types/types';
+import {TSortingEnum, TOffer} from '../types/types';
 
 const getOffersAction = createAction('offers/getOffersAction');
 const changeCityAction = createAction('offers/changeCityAction', (value: string) => ({payload: value}));
@@ -9,6 +9,8 @@ const sortByPriceLowToHighAction = createAction('offers/sortByPriceLowToHighActi
 const sortByPriceHighToLowAction = createAction('offers/sortByPriceHighToLowAction');
 const sortByRatedFirstAction = createAction('offers/sortByRatedFirstAction');
 const changeSortingTypeAction = createAction('offers/changeSortingTypeAction', (value: TSortingEnum) => ({payload: value}));
+const loadOffersAction = createAction<TOffer[]>('data/loadOffersAction');
+const setOffersDataLoadingStatusAction = createAction<boolean>('setOffersDataLoadingStatusAction');
 
 export {
   getOffersAction,
@@ -17,5 +19,7 @@ export {
   sortByPriceLowToHighAction,
   sortByPriceHighToLowAction,
   sortByRatedFirstAction,
-  changeSortingTypeAction
+  changeSortingTypeAction,
+  loadOffersAction,
+  setOffersDataLoadingStatusAction
 };
