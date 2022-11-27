@@ -35,6 +35,10 @@ enum LeafletLayer {
   Attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 }
 
+enum APIRoute {
+  Offers = '/hotels',
+}
+
 const SortingType = {
   Popular: 'Popular',
   PriceLowToHigh: 'Price: low to high',
@@ -56,6 +60,7 @@ const DEFAULT_CITY_NAME = 'Paris';
 const DEFAULT_OFFERS_SORTING_OPTION: TSortingEnum = 'Popular';
 const MAX_PHOTO_COUNT = 6;
 const MAX_REVIEWS_COUNT = 10;
+const AUTH_TOKEN_KEY_NAME = 'guess-six-cities-token';
 
 export {
   AppRoute,
@@ -71,5 +76,7 @@ export {
   DEFAULT_OFFERS_SORTING_OPTION,
   SORTING_OPTIONS,
   SortingType,
-  sortingActionsMap
+  sortingActionsMap,
+  AUTH_TOKEN_KEY_NAME,
+  APIRoute
 };
