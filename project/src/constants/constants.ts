@@ -39,6 +39,12 @@ enum APIRoute {
   Offers = '/hotels',
 }
 
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 const SortingType = {
   Popular: 'Popular',
   PriceLowToHigh: 'Price: low to high',
@@ -78,5 +84,6 @@ export {
   SortingType,
   sortingActionsMap,
   AUTH_TOKEN_KEY_NAME,
-  APIRoute
+  APIRoute,
+  AuthorizationStatus
 };
