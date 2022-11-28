@@ -1,14 +1,24 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getOffersAction, changeCityAction, sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction, changeSortingTypeAction} from './action';
-import {offers} from '../mocks/offers';
+import {getOffersAction, changeCityAction, sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction, changeSortingTypeAction, loadOffersAction, setOffersDataLoadingStatusAction} from './action';
 import {DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION} from '../constants/constants';
+import {TOffer, TSortingEnum} from '../types/types';
 
-const initialState = {
+type TInitialState = {
+  currentCityName: string;
+  offers: TOffer[];
+  offersByCurrentCity: TOffer[];
+  sortingType: TSortingEnum;
+  isAuth: boolean;
+  isOffersDataLoading: boolean;
+}
+
+const initialState: TInitialState = {
   currentCityName: DEFAULT_CITY_NAME,
-  offers: offers,
-  offersByCurrentCity: offers.filter((offer) => offer.city.name === DEFAULT_CITY_NAME),
+  offers: [],
+  offersByCurrentCity: [],
   sortingType: DEFAULT_OFFERS_SORTING_OPTION,
-  isAuth: true
+  isAuth: true,
+  isOffersDataLoading: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -33,6 +43,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSortingTypeAction, (state, action) => {
       state.sortingType = action.payload;
+    })
+    .addCase(loadOffersAction, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(setOffersDataLoadingStatusAction, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });
 

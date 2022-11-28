@@ -21,7 +21,7 @@ function App(props: TAppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<Layout isOffersEmpty={isOffersEmpty} />}>
-          <Route index element={<MainScreen isOffersEmpty={isOffersEmpty} />} />
+          <Route index element={<MainScreen />} />
           <Route path={AppRoute.Login} element={isAuth ? <Navigate to={AppRoute.Root} /> : <LoginScreen />} />
           <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen reviews={props.reviews} />} />
           <Route path="*" element={<NotFoundScreen />} />
