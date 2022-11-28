@@ -37,6 +37,8 @@ enum LeafletLayer {
 
 enum APIRoute {
   Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 enum AuthorizationStatus {
