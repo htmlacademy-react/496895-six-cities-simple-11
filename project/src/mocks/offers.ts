@@ -69,7 +69,10 @@ const offersByAmsterdam: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 1,
@@ -95,7 +98,10 @@ const offersByAmsterdam: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 2,
@@ -121,7 +127,10 @@ const offersByAmsterdam: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 3,
@@ -147,7 +156,10 @@ const offersByAmsterdam: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 4,
@@ -173,7 +185,10 @@ const offersByAmsterdam: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 5,
@@ -202,7 +217,10 @@ const offersByParis: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 6,
@@ -228,7 +246,10 @@ const offersByParis: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 7,
@@ -254,7 +275,10 @@ const offersByParis: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 8,
@@ -283,7 +307,10 @@ const offersByCologne: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 9,
@@ -309,7 +336,10 @@ const offersByCologne: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 10,
@@ -335,7 +365,10 @@ const offersByCologne: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 11,
@@ -364,7 +397,10 @@ const offersByBrussels: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 12,
@@ -390,7 +426,10 @@ const offersByBrussels: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 13,
@@ -416,7 +455,10 @@ const offersByBrussels: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 14,
@@ -445,7 +487,10 @@ const offersByHamburg: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 15,
@@ -471,7 +516,10 @@ const offersByHamburg: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 16,
@@ -497,7 +545,10 @@ const offersByHamburg: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 17,
@@ -526,7 +577,10 @@ const offersByDusseldorf: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 18,
@@ -552,7 +606,10 @@ const offersByDusseldorf: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 19,
@@ -578,7 +635,10 @@ const offersByDusseldorf: TOffer[] = [
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 2,
+
       name: 'Angelina',
+      email: '',
+      token: '',
       isPro: true,
     },
     id: 20,
