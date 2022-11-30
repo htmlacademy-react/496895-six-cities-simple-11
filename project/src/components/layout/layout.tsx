@@ -2,6 +2,7 @@ import {Outlet, useLocation} from 'react-router-dom';
 import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { isAuthorized } from '../../utils';
 
 type TLayoutProps = {
   isOffersEmpty: boolean;
@@ -20,8 +21,10 @@ function getElementClassName(isAuth: boolean, routes: typeof PageElClassName | t
 
 function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   const {pathname} = useLocation();
+  const isMainScreen = pathname === AppRoute.Root;
 
-  const isAuth = useAppSelector((state) => state.isAuth);
+  const status = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = isAuthorized(status);
 
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 
@@ -29,7 +32,7 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
 
   return (
     <div className={pageElClassName}>
-      <Header isAuth={isAuth} />
+      <Header isMainScreen={isMainScreen} />
 
       <main className={mainElClassName}>
         <Outlet />
