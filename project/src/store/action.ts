@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {TSortingEnum, TOffer} from '../types/types';
+import {TSortingEnum, TOffer, TUser} from '../types/types';
 import {AuthorizationStatus} from '../constants/constants';
 
 const getOffersAction = createAction('offers/getOffersAction');
@@ -13,6 +13,7 @@ const changeSortingTypeAction = createAction('offers/changeSortingTypeAction', (
 const loadOffersAction = createAction<TOffer[]>('data/loadOffersAction');
 const setOffersDataLoadingStatusAction = createAction<boolean>('setOffersDataLoadingStatusAction');
 const requireAuthorizationAction = createAction<AuthorizationStatus>('user/requireAuthorization');
+const setUserAction = createAction<TUser | null>('user/setUserAction');
 
 export {
   getOffersAction,
@@ -24,5 +25,6 @@ export {
   changeSortingTypeAction,
   loadOffersAction,
   setOffersDataLoadingStatusAction,
-  requireAuthorizationAction
+  requireAuthorizationAction,
+  setUserAction
 };

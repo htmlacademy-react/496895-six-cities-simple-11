@@ -1,15 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getOffersAction, changeCityAction, sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction, changeSortingTypeAction, loadOffersAction, setOffersDataLoadingStatusAction} from './action';
-import {DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION} from '../constants/constants';
-import {TOffer, TSortingEnum} from '../types/types';
+import {getOffersAction, changeCityAction, sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction, changeSortingTypeAction, loadOffersAction, setOffersDataLoadingStatusAction, requireAuthorizationAction, setUserAction} from './action';
+import {AuthorizationStatus, DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION} from '../constants/constants';
+import {TOffer, TSortingEnum, TUser} from '../types/types';
 
 type TInitialState = {
   currentCityName: string;
   offers: TOffer[];
   offersByCurrentCity: TOffer[];
   sortingType: TSortingEnum;
-  isAuth: boolean;
   isOffersDataLoading: boolean;
+  authorizationStatus: string;
+  user: TUser | null;
 }
 
 const initialState: TInitialState = {
@@ -17,8 +18,9 @@ const initialState: TInitialState = {
   offers: [],
   offersByCurrentCity: [],
   sortingType: DEFAULT_OFFERS_SORTING_OPTION,
-  isAuth: true,
-  isOffersDataLoading: false
+  isOffersDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  user: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -49,6 +51,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatusAction, (state, action) => {
       state.isOffersDataLoading = action.payload;
+    })
+    .addCase(requireAuthorizationAction, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserAction, (state, action) => {
+      state.user = action.payload;
     });
 });
 
