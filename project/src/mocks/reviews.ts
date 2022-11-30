@@ -8,6 +8,8 @@ const reviews: TReview[] = [
       id: 1,
       avatarUrl: 'img/avatar-max.jpg',
       name: 'Max',
+      email: '',
+      token: ''
     },
     rating: 4,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
@@ -20,6 +22,8 @@ const reviews: TReview[] = [
       id: 1,
       avatarUrl: 'img/avatar-max.jpg',
       name: 'Max',
+      email: '',
+      token: ''
     },
     rating: 3,
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
