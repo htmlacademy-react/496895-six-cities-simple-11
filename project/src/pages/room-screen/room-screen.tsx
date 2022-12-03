@@ -8,6 +8,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {isAuthorized} from '../../utils';
 
 type TRoomScreenProps = {
   reviews: TReview[];
@@ -16,7 +17,8 @@ type TRoomScreenProps = {
 function RoomScreen({reviews}: TRoomScreenProps): JSX.Element {
 
   const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
-  const isAuth = useAppSelector((state) => state.isAuth);
+  const status = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = isAuthorized(status);
   const params = useParams();
   const offer = offersByCurrentCity.find((item) => `${item.id}` === params.id);
 

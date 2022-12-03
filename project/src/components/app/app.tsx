@@ -7,13 +7,15 @@ import {TReview} from '../../types/types';
 import {AppRoute} from '../../constants/constants';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {isAuthorized} from '../../utils';
 
 type TAppProps = {
   reviews: TReview[];
 }
 
 function App(props: TAppProps): JSX.Element {
-  const isAuth = useAppSelector((state) => state.isAuth);
+  const {authorizationStatus} = useAppSelector((state) => state);
+  const isAuth = isAuthorized(authorizationStatus);
   const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
   const isOffersEmpty = offersByCurrentCity.length === 0;
 

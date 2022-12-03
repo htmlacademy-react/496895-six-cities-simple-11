@@ -1,22 +1,20 @@
-import {AppRoute} from '../../constants/constants';
 import Logo from '../logo/logo';
 import HeaderNav from '../header-nav/header-nav';
 
 type THeaderProps = {
-  isAuth: boolean;
+  isMainScreen: boolean;
 }
 
-function Header({isAuth}: THeaderProps): JSX.Element {
-  const isMainPage = window.location.pathname === AppRoute.Root;
+function Header({isMainScreen}: THeaderProps): JSX.Element {
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo isMainPage={isMainPage} />
+            <Logo isMainScreen={isMainScreen} />
           </div>
-          <HeaderNav isAuth={isAuth} />
+          <HeaderNav />
         </div>
       </div>
     </header>

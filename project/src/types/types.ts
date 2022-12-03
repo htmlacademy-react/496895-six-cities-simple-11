@@ -6,6 +6,8 @@ type TUser = {
   id: number;
   isPro: boolean;
   name: string;
+  email: string;
+  token: string;
 }
 
 type TReview = {
@@ -48,9 +50,14 @@ type TOffer = {
   type: string;
 }
 
+type TAuthData = {
+  login: string;
+  password: string;
+}
+
 type TState = ReturnType<typeof store.getState>;
 type TAppDispatch = typeof store.dispatch;
 
 type TSortingEnum = typeof SortingType[keyof typeof SortingType];
 
-export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum};
+export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum, TAuthData, TUser};

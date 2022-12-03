@@ -37,6 +37,14 @@ enum LeafletLayer {
 
 enum APIRoute {
   Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
 }
 
 const SortingType = {
@@ -78,5 +86,6 @@ export {
   SortingType,
   sortingActionsMap,
   AUTH_TOKEN_KEY_NAME,
-  APIRoute
+  APIRoute,
+  AuthorizationStatus
 };

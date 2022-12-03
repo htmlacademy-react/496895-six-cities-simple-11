@@ -9,12 +9,12 @@ import SortingOption from '../sorting-option/sorting-option';
 function Sorting() : JSX.Element {
   const [isActive, setIsActive] = useState(false);
   const dispatch = useAppDispatch();
-  const selectedOption = useAppSelector((state) => state.sortingType);
+  const {sortingType} = useAppSelector((state) => state);
   const modifierClassName = isActive ? ' places__options--opened' : '';
 
-  const handleOptionClick = (sortingType: TSortingEnum) => {
-    dispatch(sortingActionsMap[sortingType]());
-    dispatch(changeSortingTypeAction(sortingType));
+  const handleOptionClick = (type: TSortingEnum) => {
+    dispatch(sortingActionsMap[type]());
+    dispatch(changeSortingTypeAction(type));
     setIsActive(false);
   };
 
@@ -26,13 +26,13 @@ function Sorting() : JSX.Element {
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={handleSortingClick}>
-        {selectedOption}
+        {sortingType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className={`places__options places__options--custom${modifierClassName}`}>
-        {SORTING_OPTIONS.map((option) => <SortingOption key={option} onOptionClick={handleOptionClick} isActive={option === selectedOption} name={option} />)}
+        {SORTING_OPTIONS.map((option) => <SortingOption key={option} onOptionClick={handleOptionClick} isActive={option === sortingType} name={option} />)}
       </ul>
     </form>
   );
