@@ -23,8 +23,8 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   const {pathname} = useLocation();
   const isMainScreen = pathname === AppRoute.Root;
 
-  const status = useAppSelector((state) => state.authorizationStatus);
-  const isAuth = isAuthorized(status);
+  const {authorizationStatus} = useAppSelector((state) => state);
+  const isAuth = isAuthorized(authorizationStatus);
 
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
 

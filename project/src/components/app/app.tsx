@@ -14,8 +14,8 @@ type TAppProps = {
 }
 
 function App(props: TAppProps): JSX.Element {
-  const status = useAppSelector((state) => state.authorizationStatus);
-  const isAuth = isAuthorized(status);
+  const {authorizationStatus} = useAppSelector((state) => state);
+  const isAuth = isAuthorized(authorizationStatus);
   const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
   const isOffersEmpty = offersByCurrentCity.length === 0;
 

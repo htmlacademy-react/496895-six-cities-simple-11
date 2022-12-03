@@ -8,9 +8,8 @@ import {isAuthorized} from '../../utils';
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.user);
-  const status = useAppSelector((state) => state.authorizationStatus);
-  const isAuth = isAuthorized(status);
+  const {user, authorizationStatus} = useAppSelector((state) => state);
+  const isAuth = isAuthorized(authorizationStatus);
 
   const handleLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
