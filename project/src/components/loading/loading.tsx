@@ -1,9 +1,14 @@
 import './loading.css';
 
-function Loading(): JSX.Element {
+type TLoadingProps = {
+  text?: string;
+  isInner?: boolean;
+}
+
+function Loading({text, isInner}: TLoadingProps): JSX.Element {
   return (
-    <div className="loading">
-      <p>Loading ...</p>
+    <div className={`loading${isInner ? ' loading--inner' : ''}`}>
+      <p> {text || 'Loading'} ...</p>
     </div>
   );
 }
