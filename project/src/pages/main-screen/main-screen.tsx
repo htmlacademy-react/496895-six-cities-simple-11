@@ -6,19 +6,14 @@ import Loading from '../../components/loading/loading';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {fetchOffersAction} from '../../store/api-actions';
-
 import {useEffect, useState} from 'react';
 
 function MainScreen(): JSX.Element {
   const dispatch = useAppDispatch();
-
   const [id, setCardId] = useState(0);
-  const currentCityName = useAppSelector((state) => state.currentCityName);
-  const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
-  const offers = useAppSelector((state) => state.offers);
-  const isOffersEmpty = offersByCurrentCity.length === 0;
+  const {currentCityName, offersByCurrentCity, offers, isOffersDataLoading} = useAppSelector((state) => state);
 
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const isOffersEmpty = offersByCurrentCity.length === 0;
 
   const cardMouseOverHandler = (cardId: number) => {
     setCardId(cardId);
