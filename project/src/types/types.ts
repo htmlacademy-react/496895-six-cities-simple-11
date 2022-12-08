@@ -61,7 +61,6 @@ type TReviewData = {
   rating: number;
 }
 
-
 type TState = ReturnType<typeof store.getState>;
 type TAppDispatch = typeof store.dispatch;
 

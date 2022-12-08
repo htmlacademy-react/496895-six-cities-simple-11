@@ -106,18 +106,16 @@ const fetchNearbyOffersAction = createAsyncThunk<void, string, {
   },
 );
 
-
 const addReviewAction = createAsyncThunk<void, TReviewData, {
   dispatch: TAppDispatch;
   state: TState;
   extra: AxiosInstance;
 }>(
   'user/addReview',
-  async ({id, comment, rating, handleSuccessSubmit}, {dispatch, extra: api}) => {
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
     dispatch(setReviewDataSendingStatusAction(true));
     const {data} = await api.post<TReview[]>(`${APIRoute.Reviews}/${id}`, {comment, rating});
     dispatch(loadReviewsAction(data));
-    handleSuccessSubmit();
     dispatch(setReviewDataSendingStatusAction(false));
   }
 );

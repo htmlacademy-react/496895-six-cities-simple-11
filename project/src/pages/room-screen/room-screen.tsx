@@ -21,25 +21,14 @@ function RoomScreen(): JSX.Element {
 
   const isAuth = isAuthorized(authorizationStatus);
 
-  //const actions = [fetchSingleOfferAction, fetchReviewsAction, fetchNearbyOffersAction];
+  const actions = [fetchSingleOfferAction, fetchReviewsAction, fetchNearbyOffersAction];
 
   useEffect(() => {
-    if (params.id) {
-      //Глеб, почему при такой записи ошибки нет
-      dispatch(fetchSingleOfferAction(params.id));
-      dispatch(fetchReviewsAction(params.id));
-      dispatch(fetchNearbyOffersAction(params.id));
-
-      /*
-        а при такой получается ошибка: Argument of type 'string | undefined' is not assignable to parameter of type 'string'. Type 'undefined' is not assignable to type 'string'.
-
-        Ругается на params.id
-      */
-
-      // actions.forEach((action) => {
-      //   dispatch(action(params.id));
-      // });
-    }
+    actions.forEach((action) => {
+      if (params.id) {
+        dispatch(action(params.id));
+      }
+    });
   }, []);
 
   if (isSingleOfferDataLoading) {
