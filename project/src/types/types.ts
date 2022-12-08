@@ -59,7 +59,6 @@ type TReviewData = {
   id: string;
   comment: string;
   rating: number;
-  handleSuccessSubmit: () => void;
 }
 
 

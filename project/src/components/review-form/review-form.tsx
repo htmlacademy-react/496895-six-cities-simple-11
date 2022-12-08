@@ -27,6 +27,11 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
     setIsValid(review.length >= ReviewLength.Min && review.length <= ReviewLength.Max && currentRating !== '');
   }, [currentRating, review]);
 
+  const handleFormSuccessSubmit = () => {
+    setReview('');
+    setIsValid(false);
+    setCurrentRating('');
+  };
 
   const fieldChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const {value} = evt.target;
@@ -38,7 +43,9 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
   };
 
   const onSubmit = (reviewData: TReviewData) => {
-    dispatch(addReviewAction(reviewData));
+    dispatch(addReviewAction(reviewData)).then(() => {
+      handleFormSuccessSubmit()
+    });
   };
 
   const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
@@ -47,12 +54,7 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
     onSubmit({
       id,
       comment: review,
-      rating: Number(currentRating),
-      handleSuccessSubmit: () => {
-        setReview('');
-        setIsValid(false);
-        setCurrentRating('');
-      }
+      rating: Number(currentRating)
     });
   };
 
