@@ -55,9 +55,15 @@ type TAuthData = {
   password: string;
 }
 
+type TReviewData = {
+  id: string;
+  comment: string;
+  rating: number;
+}
+
 type TState = ReturnType<typeof store.getState>;
 type TAppDispatch = typeof store.dispatch;
 
 type TSortingEnum = typeof SortingType[keyof typeof SortingType];
 
-export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum, TAuthData, TUser};
+export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum, TAuthData, TUser, TReviewData};

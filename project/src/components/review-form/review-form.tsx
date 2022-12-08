@@ -1,4 +1,8 @@
-import {useState, useEffect, ChangeEvent} from 'react';
+import {useState, useEffect, ChangeEvent, FormEvent} from 'react';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { addReviewAction } from '../../store/api-actions';
+import { TReviewData } from '../../types/types';
 import RatingStar from '../rating-star/rating-star';
 
 enum ReviewLength {
@@ -8,7 +12,13 @@ enum ReviewLength {
 
 const labelTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-function ReviewForm(): JSX.Element {
+type TReviewFormProps = {
+  id: string;
+}
+
+function ReviewForm({id}: TReviewFormProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const {isReviewDataSending} = useAppSelector((state) => state);
   const [currentRating, setCurrentRating] = useState('');
   const [review, setReview] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -16,6 +26,12 @@ function ReviewForm(): JSX.Element {
   useEffect(() => {
     setIsValid(review.length >= ReviewLength.Min && review.length <= ReviewLength.Max && currentRating !== '');
   }, [currentRating, review]);
+
+  const handleFormSuccessSubmit = () => {
+    setReview('');
+    setIsValid(false);
+    setCurrentRating('');
+  };
 
   const fieldChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const {value} = evt.target;
@@ -26,8 +42,24 @@ function ReviewForm(): JSX.Element {
     setCurrentRating(evt.target.value);
   };
 
+  const onSubmit = (reviewData: TReviewData) => {
+    dispatch(addReviewAction(reviewData)).then(() => {
+      handleFormSuccessSubmit();
+    });
+  };
+
+  const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    onSubmit({
+      id,
+      comment: review,
+      rating: Number(currentRating)
+    });
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmitForm}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -49,8 +81,9 @@ function ReviewForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={review}
+        value={review}
         onChange={fieldChangeHandler}
+        disabled={isReviewDataSending}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -62,9 +95,9 @@ function ReviewForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid || isReviewDataSending}
         >
-          Submit
+          {isReviewDataSending ? 'Sending...' : 'Submit'}
         </button>
       </div>
     </form>
