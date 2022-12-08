@@ -44,7 +44,7 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
 
   const onSubmit = (reviewData: TReviewData) => {
     dispatch(addReviewAction(reviewData)).then(() => {
-      handleFormSuccessSubmit()
+      handleFormSuccessSubmit();
     });
   };
 
