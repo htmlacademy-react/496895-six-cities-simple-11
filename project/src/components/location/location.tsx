@@ -1,4 +1,4 @@
-import {SyntheticEvent} from 'react';
+import {memo, SyntheticEvent} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {changeCityAction, getOffersAction, changeSortingTypeAction} from '../../store/action';
 
@@ -30,4 +30,4 @@ function Location({cityName, isActive} : TLocationProps) : JSX.Element {
   );
 }
 
-export default Location;
+export default memo(Location);

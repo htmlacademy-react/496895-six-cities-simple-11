@@ -1,6 +1,7 @@
 import OfferCard from '../offer-card/offer-card';
 import Sorting from '../sorting/sorting';
 import {TOffer} from '../../types/types';
+import { memo } from 'react';
 
 type TOffersListProps = {
   offers: TOffer[];
@@ -41,4 +42,4 @@ function OffersList({offers, onCardHover, isNear}: TOffersListProps): JSX.Elemen
   );
 }
 
-export default OffersList;
+export default memo(OffersList);

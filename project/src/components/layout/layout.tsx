@@ -3,6 +3,7 @@ import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { isAuthorized } from '../../utils';
+import { memo } from 'react';
 
 type TLayoutProps = {
   isOffersEmpty: boolean;
@@ -41,4 +42,4 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   );
 }
 
-export default Layout;
+export default memo(Layout);

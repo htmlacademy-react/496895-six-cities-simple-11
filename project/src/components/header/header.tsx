@@ -1,5 +1,6 @@
 import Logo from '../logo/logo';
 import HeaderNav from '../header-nav/header-nav';
+import { memo } from 'react';
 
 type THeaderProps = {
   isMainScreen: boolean;
@@ -21,4 +22,4 @@ function Header({isMainScreen}: THeaderProps): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);

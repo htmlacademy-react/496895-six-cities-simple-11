@@ -5,6 +5,7 @@ import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {logoutAction} from '../../store/api-actions';
 import {isAuthorized} from '../../utils';
+import {memo} from 'react'
 
 function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -44,4 +45,5 @@ function HeaderNav(): JSX.Element {
     </nav>
   );
 }
-export default HeaderNav;
+
+export default memo(HeaderNav);

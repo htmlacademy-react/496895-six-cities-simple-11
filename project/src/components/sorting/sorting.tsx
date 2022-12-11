@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {SORTING_OPTIONS, sortingActionsMap} from '../../constants/constants';
@@ -38,4 +38,4 @@ function Sorting() : JSX.Element {
   );
 }
 
-export default Sorting;
+export default memo(Sorting);

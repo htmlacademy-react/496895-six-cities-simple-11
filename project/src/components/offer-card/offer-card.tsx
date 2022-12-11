@@ -2,6 +2,7 @@ import {TOffer} from '../../types/types';
 import {AppRoute} from '../../constants/constants';
 import Rating from '../rating/rating';
 import {Link} from 'react-router-dom';
+import { memo } from 'react';
 
 type TOfferCardProps = {
   offer: TOffer;
@@ -51,4 +52,4 @@ function OfferCard({offer, onCardHover, isNear}: TOfferCardProps): JSX.Element {
   );
 }
 
-export default OfferCard;
+export default memo(OfferCard);
