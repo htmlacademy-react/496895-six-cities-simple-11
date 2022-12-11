@@ -29,7 +29,7 @@ function RoomScreen(): JSX.Element {
         dispatch(action(params.id));
       }
     });
-  }, []);
+  }, [params.id]);
 
   if (isSingleOfferDataLoading) {
     return (
@@ -120,9 +120,6 @@ function RoomScreen(): JSX.Element {
             </section>
           </div>
         </div>
-
-
-        {/* <Map offers={offersByCurrentCity} selectedOffer={currentOffer} city={currentOffer.city} secondaryСlassName="property__map" /> */}
 
         {isNearbyOffersDataLoading ? <Loading text={'Loading map nearby offers'} isInner /> : <Map offers={[...nearbyOffers, currentOffer]} selectedOffer={currentOffer} city={currentOffer.city} secondaryСlassName="property__map" />}
       </section>
