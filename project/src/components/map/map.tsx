@@ -1,4 +1,4 @@
-import {Icon, Marker} from 'leaflet';
+import {Icon, Marker, LayerGroup} from 'leaflet';
 import {TCity, TOffer} from '../../types/types';
 import {MarkerUrl} from '../../constants/constants';
 import {useEffect, useRef} from 'react';
@@ -30,27 +30,39 @@ function Map({offers, city, selectedOffer, secondaryСlassName} : TMapProps) : J
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const layer: LayerGroup = new LayerGroup();
+
     if (map) {
       offers.forEach((offer) => {
+        const {latitude, longitude} = offer.location;
+
         const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lat: latitude,
+          lng: longitude
         });
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.id === selectedOffer.id
+            selectedOffer && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
-
-
+          .addTo(layer);
       });
 
+      layer.addTo(map);
+
+      return () => {
+        map.removeLayer(layer);
+      };
+    }
+  }, [map, offers, selectedOffer]);
+
+  useEffect(() => {
+    if (map) {
       map.flyTo({lat: city.location.latitude, lng: city.location.longitude});
     }
-  }, [city, map, offers, selectedOffer]);
+  }, [city]);
 
   return (
     <section className={`${secondaryСlassName} map`} ref={mapRef}></section>
