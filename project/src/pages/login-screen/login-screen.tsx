@@ -2,9 +2,10 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants/constants';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import LoginForm from '../../components/login-form/login-form';
+import { getCurrentCityName } from '../../store/offers-process/selectors';
 
 function LoginScreen(): JSX.Element {
-  const currentCityName = useAppSelector((state) => state.currentCityName);
+  const currentCityName = useAppSelector(getCurrentCityName);
 
   return (
     <div className="page__login-container container">

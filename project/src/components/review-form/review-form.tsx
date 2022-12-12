@@ -2,6 +2,7 @@ import {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addReviewAction } from '../../store/api-actions';
+import { getReviewDataSendingStatus } from '../../store/reviews-data/selectors';
 import { TReviewData } from '../../types/types';
 import RatingStar from '../rating-star/rating-star';
 
@@ -18,7 +19,7 @@ type TReviewFormProps = {
 
 function ReviewForm({id}: TReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const {isReviewDataSending} = useAppSelector((state) => state);
+  const isReviewDataSending = useAppSelector(getReviewDataSendingStatus);
   const [currentRating, setCurrentRating] = useState('');
   const [review, setReview] = useState('');
   const [isValid, setIsValid] = useState(false);
