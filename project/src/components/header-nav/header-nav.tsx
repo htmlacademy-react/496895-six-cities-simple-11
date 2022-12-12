@@ -2,15 +2,16 @@ import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants/constants';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {useAppSelector} from '../../hooks/useAppSelector';
 import {logoutAction} from '../../store/api-actions';
-import {isAuthorized} from '../../utils';
-import {memo} from 'react'
+import {memo} from 'react';
 
-function HeaderNav(): JSX.Element {
+type THeaderNavProps = {
+  isAuth: boolean;
+  userEmail: string;
+}
+
+function HeaderNav({isAuth, userEmail}: THeaderNavProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const {user, authorizationStatus} = useAppSelector((state) => state);
-  const isAuth = isAuthorized(authorizationStatus);
 
   const handleLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
@@ -25,7 +26,7 @@ function HeaderNav(): JSX.Element {
             <li className="header__nav-item user">
               <div className="header__nav-profile">
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                <span className="header__user-name user__name">{user ? user.email : ''}</span>
+                <span className="header__user-name user__name">{userEmail}</span>
               </div>
             </li>
             <li className="header__nav-item">
