@@ -12,28 +12,64 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { fetchNearbyOffersAction, fetchReviewsAction, fetchSingleOfferAction } from '../../store/api-actions';
 import Loading from '../../components/loading/loading';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getCurrentOffer, getLoadingErrorStatus, getNearbyOffers, getNearbyOffersDataLoadingStatus, getNearbyOffersLoadingErrorStatus, getSingleOfferDataLoadingStatus } from '../../store/offers-process/selectors';
+import { getReviews, getReviewsDataLoadingStatus, getReviewsLoadingErrorStatus } from '../../store/reviews-data/selectors';
+import ErrorScreen from '../error-screen/error-screen';
 
 function RoomScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const params = useParams();
 
-  const {authorizationStatus, isSingleOfferDataLoading, isReviewsDataLoading, isNearbyOffersDataLoading, currentOffer, reviews, nearbyOffers} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isSingleOfferDataLoading = useAppSelector(getSingleOfferDataLoadingStatus);
+  const isReviewsDataLoading = useAppSelector(getReviewsDataLoadingStatus);
+  const isNearbyOffersDataLoading = useAppSelector(getNearbyOffersDataLoadingStatus);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const reviews = useAppSelector(getReviews);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+
+  const hasLoadingError = useAppSelector(getLoadingErrorStatus);
+  const hasNearbyOffersLoadingError = useAppSelector(getNearbyOffersLoadingErrorStatus);
+  const hasReviewsLoadingError = useAppSelector(getReviewsLoadingErrorStatus);
 
   const isAuth = isAuthorized(authorizationStatus);
 
-  const actions = [fetchSingleOfferAction, fetchReviewsAction, fetchNearbyOffersAction];
-
   useEffect(() => {
-    actions.forEach((action) => {
-      if (params.id) {
-        dispatch(action(params.id));
-      }
-    });
+    if (params.id) {
+      dispatch(fetchSingleOfferAction(params.id));
+      dispatch(fetchReviewsAction(params.id));
+      dispatch(fetchNearbyOffersAction(params.id));
+    }
   }, [params.id]);
+
+  const handleErrorButtonClick = () => {
+    if (params.id) {
+      dispatch(fetchSingleOfferAction(params.id));
+    }
+  };
+
+  const handleNearbyOffersErrorButtonClick = () => {
+    if (params.id) {
+      dispatch(fetchNearbyOffersAction(params.id));
+    }
+  };
+
+  const handleReviewsErrorButtonClick = () => {
+    if (params.id) {
+      dispatch(fetchReviewsAction(params.id));
+    }
+  };
 
   if (isSingleOfferDataLoading) {
     return (
       <Loading />
+    );
+  }
+
+  if (hasLoadingError) {
+    return (
+      <ErrorScreen handleButtonClick={handleErrorButtonClick} />
     );
   }
 
@@ -115,16 +151,29 @@ function RoomScreen(): JSX.Element {
               <h2 className="reviews__title">
                 Reviews · <span className="reviews__amount">{isReviewsDataLoading ? 0 : reviews.length}</span>
               </h2>
-              {isReviewsDataLoading ? <Loading text={'Loading reviews'} isInner /> : <ReviewsList reviews={reviews} />}
+              {isReviewsDataLoading && <Loading text={'Loading reviews'} isInner /> }
+
+              {!isReviewsDataLoading && !hasReviewsLoadingError && <ReviewsList reviews={reviews}/>}
+
+              {hasReviewsLoadingError && <ErrorScreen isInner text={'Failed to load reviews'} handleButtonClick={handleReviewsErrorButtonClick} />}
+
               {isAuth && <ReviewForm id={`${currentOffer.id}`} />}
             </section>
           </div>
         </div>
 
-        {isNearbyOffersDataLoading ? <Loading text={'Loading map nearby offers'} isInner /> : <Map offers={[...nearbyOffers, currentOffer]} selectedOffer={currentOffer} city={currentOffer.city} secondaryСlassName="property__map" />}
+        {isNearbyOffersDataLoading && <Loading text={'Loading map nearby offers'} isInner />}
+
+        {!isNearbyOffersDataLoading && !hasNearbyOffersLoadingError && <Map offers={[...nearbyOffers, currentOffer]} selectedOffer={currentOffer} city={currentOffer.city} secondaryСlassName="property__map" />}
+
       </section>
       <div className="container">
-        {isNearbyOffersDataLoading ? <Loading text={'Loading nearby offers list'} isInner /> : <OffersList offers={nearbyOffers} isNear />}
+        {isNearbyOffersDataLoading && <Loading text={'Loading nearby offers list'} isInner />}
+
+        {!isNearbyOffersDataLoading && !hasNearbyOffersLoadingError && <OffersList offers={nearbyOffers} isNear />}
+
+        {hasNearbyOffersLoadingError && <ErrorScreen isInner text={'Failed to load nearby offers'} handleButtonClick={handleNearbyOffersErrorButtonClick} />}
+
       </div>
     </>
   ) : (<NotFoundScreen />);
