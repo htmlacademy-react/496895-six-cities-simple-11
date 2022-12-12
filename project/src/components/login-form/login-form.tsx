@@ -1,7 +1,7 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { loginAction } from "../../store/api-actions";
-import { TAuthData } from "../../types/types";
+import {ChangeEvent, FormEvent, useState} from 'react';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {loginAction} from '../../store/api-actions';
+import {TAuthData} from '../../types/types';
 
 function LoginForm(): JSX.Element {
   const [loginValue, setLoginValue] = useState('');
