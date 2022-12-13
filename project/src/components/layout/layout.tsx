@@ -3,6 +3,8 @@ import Header from './../header/header';
 import {MainElClassName, PageElClassName, AppRoute} from './../../constants/constants';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { isAuthorized } from '../../utils';
+import { memo } from 'react';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type TLayoutProps = {
   isOffersEmpty: boolean;
@@ -23,7 +25,7 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   const {pathname} = useLocation();
   const isMainScreen = pathname === AppRoute.Root;
 
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuth = isAuthorized(authorizationStatus);
 
   const mainElClassName = isOffersEmpty ? MainElClassName.MainEmpty : getElementClassName(isAuth, MainElClassName, pathname);
@@ -32,7 +34,7 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
 
   return (
     <div className={pageElClassName}>
-      <Header isMainScreen={isMainScreen} />
+      <Header isMainScreen={isMainScreen} isAuth={isAuth} />
 
       <main className={mainElClassName}>
         <Outlet />
@@ -41,4 +43,4 @@ function Layout({isOffersEmpty}: TLayoutProps): JSX.Element {
   );
 }
 
-export default Layout;
+export default memo(Layout);

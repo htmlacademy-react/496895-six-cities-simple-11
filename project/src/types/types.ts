@@ -1,5 +1,6 @@
 import {store} from '../store';
 import {SortingType} from '../constants/constants';
+import {AuthorizationStatus} from '../constants/constants';
 
 type TUser = {
   avatarUrl: string;
@@ -61,9 +62,36 @@ type TReviewData = {
   rating: number;
 }
 
+type TUserProcess = {
+  authorizationStatus: AuthorizationStatus;
+  user: TUser | null;
+}
+
+type TOffersProcess = {
+  currentCityName: string;
+  offers: TOffer[];
+  nearbyOffers: TOffer[];
+  offersByCurrentCity: TOffer[];
+  sortingType: TSortingEnum;
+  isOffersDataLoading: boolean;
+  isSingleOfferDataLoading: boolean;
+  isNearbyOffersDataLoading: boolean;
+  currentOffer: TOffer | undefined;
+  hasLoadingError: boolean;
+  hasNearbyOffersLoadingError: boolean;
+}
+
+type TReviewsData = {
+  isReviewsDataLoading: boolean;
+  isReviewDataSending: boolean;
+  hasLoadingError: boolean;
+  hasSendingError: boolean;
+  reviews: TReview[];
+};
+
 type TState = ReturnType<typeof store.getState>;
 type TAppDispatch = typeof store.dispatch;
 
 type TSortingEnum = typeof SortingType[keyof typeof SortingType];
 
-export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum, TAuthData, TUser, TReviewData};
+export type {TReview, TOffer, TCity, TLocation, TState, TAppDispatch, TSortingEnum, TAuthData, TUser, TReviewData, TUserProcess, TOffersProcess, TReviewsData};

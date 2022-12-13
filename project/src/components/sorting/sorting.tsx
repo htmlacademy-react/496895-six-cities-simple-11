@@ -1,20 +1,21 @@
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {SORTING_OPTIONS, sortingActionsMap} from '../../constants/constants';
-import {changeSortingTypeAction} from '../../store/action';
+import {SORTING_OPTIONS} from '../../constants/constants';
 import {TSortingEnum} from '../../types/types';
 import SortingOption from '../sorting-option/sorting-option';
+import {getSortingType} from '../../store/offers-process/selectors';
+import {changeSortingType, sortingActionsMap} from '../../store/offers-process/offers-process';
 
 function Sorting() : JSX.Element {
   const [isActive, setIsActive] = useState(false);
+  const sortingType = useAppSelector(getSortingType);
   const dispatch = useAppDispatch();
-  const {sortingType} = useAppSelector((state) => state);
   const modifierClassName = isActive ? ' places__options--opened' : '';
 
   const handleOptionClick = (type: TSortingEnum) => {
     dispatch(sortingActionsMap[type]());
-    dispatch(changeSortingTypeAction(type));
+    dispatch(changeSortingType(type));
     setIsActive(false);
   };
 
@@ -38,4 +39,4 @@ function Sorting() : JSX.Element {
   );
 }
 
-export default Sorting;
+export default memo(Sorting);

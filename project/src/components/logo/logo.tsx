@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants/constants';
+import {memo} from 'react';
 
 type TLogoProps = {
   isMainScreen: boolean;
@@ -19,4 +20,4 @@ function Logo({isMainScreen}: TLogoProps): JSX.Element {
   );
 }
 
-export default Logo;
+export default memo(Logo);

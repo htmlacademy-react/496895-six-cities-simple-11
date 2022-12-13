@@ -7,16 +7,26 @@ import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {fetchOffersAction} from '../../store/api-actions';
 import {useEffect, useState} from 'react';
+import { getCurrentCityName, getLoadingErrorStatus, getOffersByCurrentCity, getOffersDataLoadingStatus} from '../../store/offers-process/selectors';
+import ErrorScreen from '../error-screen/error-screen';
 
 function MainScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const [id, setCardId] = useState(0);
-  const {currentCityName, offersByCurrentCity, offers, isOffersDataLoading} = useAppSelector((state) => state);
+
+  const currentCityName = useAppSelector(getCurrentCityName);
+  const offersByCurrentCity = useAppSelector(getOffersByCurrentCity);
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
+  const hasLoadingError = useAppSelector(getLoadingErrorStatus);
 
   const isOffersEmpty = offersByCurrentCity.length === 0;
 
-  const cardMouseOverHandler = (cardId: number) => {
+  const handleCardMouseOver = (cardId: number) => {
     setCardId(cardId);
+  };
+
+  const handleErrorButtonClick = () => {
+    dispatch(fetchOffersAction());
   };
 
   useEffect(() => {
@@ -29,6 +39,11 @@ function MainScreen(): JSX.Element {
     );
   }
 
+  if (hasLoadingError) {
+    return (
+      <ErrorScreen handleButtonClick={handleErrorButtonClick} />);
+  }
+
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -38,9 +53,9 @@ function MainScreen(): JSX.Element {
 
       <div className="cities">
         <div className={`cities__places-container ${isOffersEmpty ? 'cities__places-container--empty ' : ''}container`}>
-          {isOffersEmpty ? <NoPlaces currentCityName={currentCityName} /> : <OffersList onCardHover={cardMouseOverHandler} offers={offersByCurrentCity} />}
+          {isOffersEmpty ? <NoPlaces currentCityName={currentCityName} /> : <OffersList onCardHover={handleCardMouseOver} offers={offersByCurrentCity} />}
           <div className="cities__right-section">
-            {!isOffersEmpty && <Map offers={offers} selectedOffer={offersByCurrentCity.find((offer) => offer.id === id)} city={offersByCurrentCity[0].city} secondaryСlassName="cities__map" />}
+            {!isOffersEmpty && <Map offers={offersByCurrentCity} selectedOffer={offersByCurrentCity.find((offer) => offer.id === id)} city={offersByCurrentCity[0].city} secondaryСlassName="cities__map" />}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import {SyntheticEvent} from 'react';
+import {memo, SyntheticEvent} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
-import {changeCityAction, getOffersAction, changeSortingTypeAction} from '../../store/action';
+import {changeCity, changeSortingType, setOffers} from '../../store/offers-process/offers-process';
 
 import {DEFAULT_OFFERS_SORTING_OPTION} from '../../constants/constants';
 
@@ -16,9 +16,9 @@ function Location({cityName, isActive} : TLocationProps) : JSX.Element {
 
   const handleLocationItemClick = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    dispatch(changeCityAction(cityName));
-    dispatch(getOffersAction());
-    dispatch(changeSortingTypeAction(DEFAULT_OFFERS_SORTING_OPTION));
+    dispatch(changeCity(cityName));
+    dispatch(setOffers());
+    dispatch(changeSortingType(DEFAULT_OFFERS_SORTING_OPTION));
   };
 
   return (
@@ -30,4 +30,4 @@ function Location({cityName, isActive} : TLocationProps) : JSX.Element {
   );
 }
 
-export default Location;
+export default memo(Location);

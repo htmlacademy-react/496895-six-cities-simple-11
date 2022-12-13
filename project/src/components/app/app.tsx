@@ -7,11 +7,13 @@ import {AppRoute} from '../../constants/constants';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {isAuthorized} from '../../utils';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getOffersByCurrentCity } from '../../store/offers-process/selectors';
 
 function App(): JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuth = isAuthorized(authorizationStatus);
-  const offersByCurrentCity = useAppSelector((state) => state.offersByCurrentCity);
+  const offersByCurrentCity = useAppSelector(getOffersByCurrentCity);
   const isOffersEmpty = offersByCurrentCity.length === 0;
 
   return (

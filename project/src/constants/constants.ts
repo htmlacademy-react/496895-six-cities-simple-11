@@ -1,4 +1,3 @@
-import {sortByPopularAction, sortByPriceLowToHighAction, sortByPriceHighToLowAction, sortByRatedFirstAction} from '../store/action';
 import {TSortingEnum} from '../types/types';
 
 enum AppRoute {
@@ -55,13 +54,6 @@ const SortingType = {
   TopRatedFirst: 'Top rated first'
 } as const;
 
-const sortingActionsMap = {
-  'Popular': sortByPopularAction,
-  'Price: low to high': sortByPriceLowToHighAction,
-  'Price: high to low': sortByPriceHighToLowAction,
-  'Top rated first': sortByRatedFirstAction
-};
-
 const CITIES_NAMES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 const SORTING_OPTIONS: TSortingEnum[] = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
 
@@ -70,6 +62,13 @@ const DEFAULT_OFFERS_SORTING_OPTION: TSortingEnum = 'Popular';
 const MAX_PHOTO_COUNT = 6;
 const MAX_REVIEWS_COUNT = 10;
 const AUTH_TOKEN_KEY_NAME = 'guess-six-cities-token';
+const AUTH_USER_EMAIL_NAME = 'guess-six-cities-email';
+
+enum NameSpace {
+  Offers = 'OFFERS',
+  User = 'USER',
+  Reviews = 'REVIEWS'
+}
 
 export {
   AppRoute,
@@ -85,8 +84,9 @@ export {
   DEFAULT_OFFERS_SORTING_OPTION,
   SORTING_OPTIONS,
   SortingType,
-  sortingActionsMap,
   AUTH_TOKEN_KEY_NAME,
+  AUTH_USER_EMAIL_NAME,
   APIRoute,
-  AuthorizationStatus
+  AuthorizationStatus,
+  NameSpace
 };

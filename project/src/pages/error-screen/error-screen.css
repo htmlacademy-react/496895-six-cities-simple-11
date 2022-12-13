@@ -1,0 +1,40 @@
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 80px);
+  padding-bottom: 80px;
+
+  font-size: 24px;
+}
+
+.error-screen--inner {
+  height: auto;
+  padding: 40px 0;
+}
+
+.error-screen__text {
+  margin-top: 0;
+  margin: 0;
+  padding: 0 45px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.error-screen__button {
+  margin-top: 18px;
+  padding: 16px 20px 13px;
+  font-size: 16px;
+    color: #fff;
+    background-color: #4481c3;
+    border-radius: 3px;
+    border: none;
+
+}
+
+.error-screen__button:focus,
+.error-screen__button:hover {
+  background-color: #3069a6;
+}

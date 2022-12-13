@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {CITIES_NAMES} from '../../constants/constants';
 import Location from '../location/location';
 
@@ -15,4 +16,4 @@ function LocationList({currentCityName} : TLocationList) : JSX.Element {
   );
 }
 
-export default LocationList;
+export default memo(LocationList);
