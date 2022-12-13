@@ -7,6 +7,7 @@ const initialState: TReviewsData = {
   isReviewsDataLoading: false,
   isReviewDataSending: false,
   hasLoadingError: false,
+  hasSendingError: false,
   reviews: []
 };
 
@@ -32,12 +33,14 @@ const reviewsData = createSlice({
       .addCase(addReviewAction.pending, (state) => {
         state.isReviewDataSending = true;
       })
-      .addCase(addReviewAction.rejected, (state,) => {
+      .addCase(addReviewAction.rejected, (state) => {
         state.isReviewDataSending = false;
+        state.hasSendingError = true;
       })
       .addCase(addReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
         state.isReviewDataSending = false;
+        state.hasSendingError = false;
       });
   }
 });

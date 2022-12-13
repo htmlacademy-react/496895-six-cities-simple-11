@@ -2,7 +2,7 @@ import {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addReviewAction } from '../../store/api-actions';
-import { getReviewDataSendingStatus } from '../../store/reviews-data/selectors';
+import { getReviewDataSendingStatus, getReviewsSendingErrorStatus } from '../../store/reviews-data/selectors';
 import { TReviewData } from '../../types/types';
 import RatingStar from '../rating-star/rating-star';
 
@@ -20,6 +20,7 @@ type TReviewFormProps = {
 function ReviewForm({id}: TReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
   const isReviewDataSending = useAppSelector(getReviewDataSendingStatus);
+  const hasSendingError = useAppSelector(getReviewsSendingErrorStatus);
   const [currentRating, setCurrentRating] = useState('');
   const [review, setReview] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -28,7 +29,11 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
     setIsValid(review.length >= ReviewLength.Min && review.length <= ReviewLength.Max && currentRating !== '');
   }, [currentRating, review]);
 
-  const handleFormSuccessSubmit = () => {
+  const handleFormSuccessSubmit = (isSendingError: boolean) => {
+    if (isSendingError) {
+      return;
+    }
+
     setReview('');
     setIsValid(false);
     setCurrentRating('');
@@ -45,7 +50,7 @@ function ReviewForm({id}: TReviewFormProps): JSX.Element {
 
   const onSubmit = (reviewData: TReviewData) => {
     dispatch(addReviewAction(reviewData)).then(() => {
-      handleFormSuccessSubmit();
+      handleFormSuccessSubmit(hasSendingError);
     });
   };
 

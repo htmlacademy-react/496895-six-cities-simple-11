@@ -85,6 +85,7 @@ type TReviewsData = {
   isReviewsDataLoading: boolean;
   isReviewDataSending: boolean;
   hasLoadingError: boolean;
+  hasSendingError: boolean;
   reviews: TReview[];
 };
 
