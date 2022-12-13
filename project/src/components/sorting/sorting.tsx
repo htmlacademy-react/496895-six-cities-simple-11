@@ -1,11 +1,11 @@
 import {memo, useState} from 'react';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {SORTING_OPTIONS, sortingActionsMap} from '../../constants/constants';
+import {SORTING_OPTIONS} from '../../constants/constants';
 import {TSortingEnum} from '../../types/types';
 import SortingOption from '../sorting-option/sorting-option';
-import { getSortingType } from '../../store/offers-process/selectors';
-import { changeSortingType } from '../../store/offers-process/offers-process';
+import {getSortingType} from '../../store/offers-process/selectors';
+import {changeSortingType, sortingActionsMap} from '../../store/offers-process/offers-process';
 
 function Sorting() : JSX.Element {
   const [isActive, setIsActive] = useState(false);
