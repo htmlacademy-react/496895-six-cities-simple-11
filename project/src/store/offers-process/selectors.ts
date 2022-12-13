@@ -1,5 +1,5 @@
-import { NameSpace } from '../../constants/constants';
-import { TOffer, TSortingEnum, TState } from '../../types/types';
+import {NameSpace } from '../../constants/constants';
+import {TOffer, TSortingEnum, TState} from '../../types/types';
 
 const getCurrentCityName = (state: TState): string => state[NameSpace.Offers].currentCityName;
 const getSortingType = (state: TState): TSortingEnum => state[NameSpace.Offers].sortingType;

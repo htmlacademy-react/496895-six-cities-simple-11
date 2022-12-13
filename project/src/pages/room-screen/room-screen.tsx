@@ -8,13 +8,13 @@ import ReviewForm from '../../components/review-form/review-form';
 import Map from '../../components/map/map';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {isAuthorized} from '../../utils';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { fetchNearbyOffersAction, fetchReviewsAction, fetchSingleOfferAction } from '../../store/api-actions';
+import {useEffect} from 'react';
+import {useAppDispatch} from '../../hooks/useAppDispatch';
+import {fetchNearbyOffersAction, fetchReviewsAction, fetchSingleOfferAction } from '../../store/api-actions';
 import Loading from '../../components/loading/loading';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { getCurrentOffer, getLoadingErrorStatus, getNearbyOffers, getNearbyOffersDataLoadingStatus, getNearbyOffersLoadingErrorStatus, getSingleOfferDataLoadingStatus } from '../../store/offers-process/selectors';
-import { getReviews, getReviewsDataLoadingStatus, getReviewsLoadingErrorStatus } from '../../store/reviews-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getCurrentOffer, getLoadingErrorStatus, getNearbyOffers, getNearbyOffersDataLoadingStatus, getNearbyOffersLoadingErrorStatus, getSingleOfferDataLoadingStatus} from '../../store/offers-process/selectors';
+import {getReviews, getReviewsDataLoadingStatus, getReviewsLoadingErrorStatus} from '../../store/reviews-data/selectors';
 import ErrorScreen from '../error-screen/error-screen';
 
 function RoomScreen(): JSX.Element {

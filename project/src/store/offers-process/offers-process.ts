@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION, NameSpace } from '../../constants/constants';
-import { TOffersProcess } from '../../types/types';
-import { filterOffers } from '../../utils';
+import {createSlice} from '@reduxjs/toolkit';
+import {DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION, NameSpace} from '../../constants/constants';
+import {TOffersProcess} from '../../types/types';
+import {filterOffers} from '../../utils';
 import {fetchNearbyOffersAction, fetchOffersAction, fetchSingleOfferAction} from '../api-actions';
 
 const initialState: TOffersProcess = {
@@ -92,4 +92,11 @@ const offersProcess = createSlice({
 
 export const {sortByPopular, sortByPriceLowToHigh, sortByPriceHighToLow, sortByRatedFirst, changeSortingType, changeCity, setOffers} = offersProcess.actions;
 
-export {offersProcess};
+const sortingActionsMap = {
+  'Popular': sortByPopular,
+  'Price: low to high': sortByPriceLowToHigh,
+  'Price: high to low': sortByPriceHighToLow,
+  'Top rated first': sortByRatedFirst,
+};
+
+export {offersProcess, sortingActionsMap};
