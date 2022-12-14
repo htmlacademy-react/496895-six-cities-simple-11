@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {DEFAULT_CITY_NAME, DEFAULT_OFFERS_SORTING_OPTION, NameSpace} from '../../constants/constants';
-import {TOffersProcess} from '../../types/types';
+import {TOffersProcess, TSortingEnum} from '../../types/types';
 import {filterOffers} from '../../utils';
 import {fetchNearbyOffersAction, fetchOffersAction, fetchSingleOfferAction} from '../api-actions';
 
@@ -34,10 +34,10 @@ const offersProcess = createSlice({
     sortByRatedFirst: (state) => {
       state.offersByCurrentCity = state.offersByCurrentCity.sort((a, b) => b.rating - a.rating);
     },
-    changeSortingType: (state, action) => {
+    changeSortingType: (state, action: {type: string; payload: TSortingEnum}) => {
       state.sortingType = action.payload;
     },
-    changeCity: (state, action) => {
+    changeCity: (state, action: {type: string; payload: string}) => {
       state.currentCityName = action.payload;
     },
     setOffers: (state) => {
