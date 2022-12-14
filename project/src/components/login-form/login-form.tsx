@@ -1,4 +1,5 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
+import { PASSWORD_PATTERN } from '../../constants/constants';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {loginAction} from '../../store/api-actions';
 import {TAuthData} from '../../types/types';
@@ -38,7 +39,7 @@ function LoginForm(): JSX.Element {
       </div>
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">Password</label>
-        <input onInput={handlePasswordInput} className="login__input form__input" type="password" name="password" placeholder="Password" required pattern="([0-9].*[A-Za-z])|([A-Za-z].*[0-9])" value={passwordValue} />
+        <input onInput={handlePasswordInput} className="login__input form__input" type="password" name="password" placeholder="Password" required pattern={PASSWORD_PATTERN} value={passwordValue} />
       </div>
       <button className="login__submit form__submit button" type="submit">Sign in</button>
     </form>

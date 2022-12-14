@@ -70,6 +70,8 @@ enum NameSpace {
   Reviews = 'REVIEWS'
 }
 
+const PASSWORD_PATTERN = '([0-9].*[A-Za-z])|([A-Za-z].*[0-9])';
+
 export {
   AppRoute,
   MainElClassName,
@@ -88,5 +90,6 @@ export {
   AUTH_USER_EMAIL_NAME,
   APIRoute,
   AuthorizationStatus,
-  NameSpace
+  NameSpace,
+  PASSWORD_PATTERN
 };
