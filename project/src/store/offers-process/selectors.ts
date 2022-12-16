@@ -1,5 +1,7 @@
+import { createSelector } from '@reduxjs/toolkit';
 import {NameSpace } from '../../constants/constants';
 import {TOffer, TSortingEnum, TState} from '../../types/types';
+import {sortOffers} from '../../utils';
 
 const getCurrentCityName = (state: TState): string => state[NameSpace.Offers].currentCityName;
 const getSortingType = (state: TState): TSortingEnum => state[NameSpace.Offers].sortingType;
@@ -13,6 +15,11 @@ const getSingleOfferDataLoadingStatus = (state: TState): boolean => state[NameSp
 const getLoadingErrorStatus = (state: TState): boolean => state[NameSpace.Offers].hasLoadingError;
 const getNearbyOffersLoadingErrorStatus = (state: TState): boolean => state[NameSpace.Offers].hasNearbyOffersLoadingError;
 
+const getCurrentCitySortedOffers = createSelector(
+  [getOffersByCurrentCity, getSortingType],
+  (offers, currentSortType) => sortOffers(offers, currentSortType)
+);
+
 export {
   getCurrentCityName,
   getSortingType,
@@ -24,5 +31,6 @@ export {
   getNearbyOffersDataLoadingStatus,
   getSingleOfferDataLoadingStatus,
   getLoadingErrorStatus,
-  getNearbyOffersLoadingErrorStatus
+  getNearbyOffersLoadingErrorStatus,
+  getCurrentCitySortedOffers
 };
