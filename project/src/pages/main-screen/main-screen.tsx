@@ -7,7 +7,7 @@ import {useAppSelector} from '../../hooks/useAppSelector';
 import {useAppDispatch} from '../../hooks/useAppDispatch';
 import {fetchOffersAction} from '../../store/api-actions';
 import {useEffect, useState} from 'react';
-import { getCurrentCityName, getLoadingErrorStatus, getOffersByCurrentCity, getOffersDataLoadingStatus} from '../../store/offers-process/selectors';
+import {getCurrentCityName, getCurrentCitySortedOffers, getLoadingErrorStatus, getOffersDataLoadingStatus} from '../../store/offers-process/selectors';
 import ErrorScreen from '../error-screen/error-screen';
 
 function MainScreen(): JSX.Element {
@@ -15,7 +15,7 @@ function MainScreen(): JSX.Element {
   const [id, setCardId] = useState(0);
 
   const currentCityName = useAppSelector(getCurrentCityName);
-  const offersByCurrentCity = useAppSelector(getOffersByCurrentCity);
+  const offersByCurrentCity = useAppSelector(getCurrentCitySortedOffers);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
   const hasLoadingError = useAppSelector(getLoadingErrorStatus);
 
