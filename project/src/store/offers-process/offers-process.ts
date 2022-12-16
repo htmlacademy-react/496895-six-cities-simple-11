@@ -22,18 +22,6 @@ const offersProcess = createSlice({
   name: NameSpace.Offers,
   initialState,
   reducers: {
-    sortByPopular: (state) => {
-      state.offersByCurrentCity = state.offersByCurrentCity.sort((a, b) => a.id - b.id);
-    },
-    sortByPriceLowToHigh: (state) => {
-      state.offersByCurrentCity = state.offersByCurrentCity.sort((a, b) => a.price - b.price);
-    },
-    sortByPriceHighToLow: (state) => {
-      state.offersByCurrentCity = state.offersByCurrentCity.sort((a, b) => b.price - a.price);
-    },
-    sortByRatedFirst: (state) => {
-      state.offersByCurrentCity = state.offersByCurrentCity.sort((a, b) => b.rating - a.rating);
-    },
     changeSortingType: (state, action: {type: string; payload: TSortingEnum}) => {
       state.sortingType = action.payload;
     },
@@ -90,13 +78,5 @@ const offersProcess = createSlice({
   },
 });
 
-export const {sortByPopular, sortByPriceLowToHigh, sortByPriceHighToLow, sortByRatedFirst, changeSortingType, changeCity, setOffers} = offersProcess.actions;
-
-const sortingActionsMap = {
-  'Popular': sortByPopular,
-  'Price: low to high': sortByPriceLowToHigh,
-  'Price: high to low': sortByPriceHighToLow,
-  'Top rated first': sortByRatedFirst,
-};
-
-export {offersProcess, sortingActionsMap};
+export const {changeSortingType, changeCity, setOffers} = offersProcess.actions;
+export {offersProcess};

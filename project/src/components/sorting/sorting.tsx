@@ -5,7 +5,7 @@ import {SORTING_OPTIONS} from '../../constants/constants';
 import {TSortingEnum} from '../../types/types';
 import SortingOption from '../sorting-option/sorting-option';
 import {getSortingType} from '../../store/offers-process/selectors';
-import {changeSortingType, sortingActionsMap} from '../../store/offers-process/offers-process';
+import {changeSortingType} from '../../store/offers-process/offers-process';
 
 function Sorting() : JSX.Element {
   const [isActive, setIsActive] = useState(false);
@@ -14,7 +14,6 @@ function Sorting() : JSX.Element {
   const modifierClassName = isActive ? ' places__options--opened' : '';
 
   const handleOptionClick = (type: TSortingEnum) => {
-    dispatch(sortingActionsMap[type]());
     dispatch(changeSortingType(type));
     setIsActive(false);
   };
